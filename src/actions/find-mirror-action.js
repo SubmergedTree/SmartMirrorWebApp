@@ -1,6 +1,6 @@
 import restRequest from './rest'
 
-import fetch from 'isomorphic-fetch';
+import 'isomorphic-fetch';
 
 export const FindMirrorTypes = {
     ACCEPT_URL: 'ACCEPT_URL',
@@ -10,59 +10,41 @@ export const FindMirrorTypes = {
 };
 
 
-/*export class FindMirrorActions {
-    constructor(restRequest) {
-        this.restRequest = restRequest;
-    }
+function fetchMirrorStatusRequest(url) {
+    return {
+        type: FindMirrorTypes.STATUS_REQUEST,
+    };
+}
 
-    mirrorStatus(url) {
-        return this.restRequest(url, (response, body) => ({
-           type: FindMirrorTypes.VALIDATE_STATUS,
-           error: "invalide url"
-        }), (response, body) => ({
-            type: '',
-            status: body.status
-        }));
-    }
+function fetchMirrorStatusSuccess(body) {
+    return {
+        type: FindMirrorTypes.STATUS_SUCCESS,
+        status: body.status
+      };
+}
 
-    acceptUrl(url) {
-        return {
-            type: FindMirrorTypes.ACCEPT_URL,
-            url: url
-        };
-    }
-}*/
+function fetchMirrorStatusFailure(ex) {
+    return {
+        type: FindMirrorTypes.STATUS_ERROR,
+        exception: ex
+      }
+}
 
 
 export const mirrorStatus = (url) => {
-    return function(dispatch) {
-        dispatch({
-            type: FindMirrorTypes.STATUS_REQUEST
-        });
+    try {
+    return dispatch => {
+        dispatch(fetchMirrorStatusRequest())
         return fetch(url)
-            .then(response => response.json().then(body => ({response, body})))
-            .then(({response, body}) => {
-                if (!response.ok) {
-                    dispatch({
-                        type: FindMirrorTypes.STATUS_ERROR,
-                        error: response.status //  TODO better error message
-                    });
-                } else {
-                    console.log("success");
-                    dispatch ({
-                        type: FindMirrorTypes.STATUS_SUCCESS,
-                        status: body.status
-                    })
-                }
-            }).then(error => {
-                console.log("error msg ");
-                dispatch({
-                    type: FindMirrorTypes.STATUS_ERROR,
-                    error: error
-                })
-            });
+          .then(res => res.json())
+          .then(body => dispatch(fetchMirrorStatusSuccess(body)))
+          .catch(ex => dispatch(fetchMirrorStatusFailure(ex)))
+      }
+    } catch(e) {
+        dispatch(fetchMirrorStatusFailur(e)); 
     }
 };
+
 
 export const acceptUrl = (url) => {
     return {
@@ -70,3 +52,4 @@ export const acceptUrl = (url) => {
         url: url
     };
 }
+

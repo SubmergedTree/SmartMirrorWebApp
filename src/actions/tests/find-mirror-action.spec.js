@@ -1,7 +1,7 @@
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import fetchMock from 'fetch-mock'
-import {acceptUrl, mirrorStatus,FindMirrorTypes} from "../find-mirror-action";
+import {acceptUrl, mirrorStatus,FindMirrorTypes, fetchTodos} from "../find-mirror-action";
 import expect from 'expect'
 
 const mockStore = configureMockStore([ thunk ]);
@@ -19,23 +19,35 @@ describe('acceptUrl is triggered', () => {
 
 
 
-describe('mirrorStatus is triggered', () => {
+describe('mirrorStatus is triggered and STATUS_REQUEST type is emmitted', () => {
   afterEach(() => {
     fetchMock.reset()
     fetchMock.restore()
   })
 
-  it('should return the string "invalide url" when it could not get any response', () => {
+  it('should return an error when it could not get any response', () => {
+    fetchMock.getOnce('http://foo.com/status', Promise.reject('No Server found'));
+
+    const expectedActions= [
+      {type: FindMirrorTypes.STATUS_REQUEST},
+      {type: FindMirrorTypes.STATUS_ERROR, exception: 'No Server found'}
+    ]
+
+    const store = mockStore({status: ''});
     
+    return store.dispatch(mirrorStatus('http://foo.com/status')).then(() => {
+      expect(store.getActions()).toEqual(expectedActions)
+    })
+
   });
 
-  it('should return the status message if the request was succesfull', () => {
-    fetchMock.getOnce('/status', {body: {status: 'up'},
+  it('should return the status message if the request was successfull', () => {
+    fetchMock.getOnce('http://foo.com/status', {body: {status: 'up'},
       headers: { 'content-type': 'application/json' } })
 
       const expectedActions= [
         {type: FindMirrorTypes.STATUS_REQUEST},
-        {type: FindMirrorTypes.STATUS_SUCCESS, body: {status: 'up'}}
+        {type: FindMirrorTypes.STATUS_SUCCESS, status: 'up'}
       ]
 
       const store = mockStore({status: ''});
