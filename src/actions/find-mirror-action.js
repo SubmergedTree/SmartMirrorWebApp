@@ -1,5 +1,3 @@
-import restRequest from './rest'
-
 import 'isomorphic-fetch';
 
 export const FindMirrorTypes = {
