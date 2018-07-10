@@ -7,7 +7,7 @@ import expect from 'expect'
 const mockStore = configureMockStore([ thunk ]);
 
 
-describe('acceptUrl is triggered', () => {
+describe('acceptUrl', () => {
 
   it('should create ACCEPT_URL action', () => {
     expect(acceptUrl('localhost:3000')).toEqual({
