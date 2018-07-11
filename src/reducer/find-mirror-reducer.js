@@ -4,7 +4,7 @@ const INITIAL_STATE = {
     mirrorFound: false
 };
 
-function findMirrorReducer(state = INITIAL_STATE, action) {
+function findMirrorStatusReducer(state = INITIAL_STATE, action) {
     switch(action.type) {
         case FindMirrorTypes.STATUS_ERROR:
             return Object.assign({}, state, {
@@ -19,4 +19,4 @@ function findMirrorReducer(state = INITIAL_STATE, action) {
     }
 }
 
-export default findMirrorReducer;
+export default findMirrorStatusReducer;
