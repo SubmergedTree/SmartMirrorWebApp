@@ -30,17 +30,17 @@ function fetchMirrorStatusFailure(ex) {
 
 
 export const mirrorStatus = (url) => {
-    try {
     return dispatch => {
-        dispatch(fetchMirrorStatusRequest())
-        return fetch(url)
-          .then(res => res.json())
-          .then(body => dispatch(fetchMirrorStatusSuccess(body)))
-          .catch(ex => dispatch(fetchMirrorStatusFailure(ex)))
+        try {
+            dispatch(fetchMirrorStatusRequest())
+            return fetch(url)
+            .then(res => res.json())
+            .then(body => dispatch(fetchMirrorStatusSuccess(body)))
+            .catch(ex => dispatch(fetchMirrorStatusFailure(ex)))
+        } catch(e) {
+            dispatch(fetchMirrorStatusFailure(e)); 
+        }
       }
-    } catch(e) {
-        dispatch(fetchMirrorStatusFailur(e)); 
-    }
 };
 
 

@@ -1,2 +1,2 @@
 
-export const getMirrorStatus = state => state.getMirrorStatus
+export const getMirrorStatus = state => state.mirrorFound
