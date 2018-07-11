@@ -8,7 +8,7 @@ import {mirrorStatus} from '../actions/find-mirror-action'
 class HeaderView extends Component {
 
     render() {
-        if (!this.props.mirrorStatus) {
+        if (!this.props.isMirrorUp) {
             return (
                 <div>
                 <div className="enterSmartMirrorUrl"> Enter SmartMirror URL</div>
@@ -25,9 +25,8 @@ class HeaderView extends Component {
 
 
 function mapStateToProps(state) {
-    alert(getMirrorStatus())
     return {
-        mirrorStatus: getMirrorStatus(state)
+        isMirrorUp: getMirrorStatus(state)
     };
 }
 
