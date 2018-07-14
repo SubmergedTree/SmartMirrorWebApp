@@ -17,3 +17,9 @@ export function UrlFormView(props) {
     );
 }
 
+
+export function UrlAcceptButton(props) {
+    return (
+        <button onClick={e => props.handleSubmitUrl(e)}>Submit</button>
+    );
+}
