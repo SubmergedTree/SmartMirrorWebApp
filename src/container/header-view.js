@@ -4,6 +4,7 @@ import {getMirrorStatus} from '../selectors/index'
 import {bindActionCreators} from 'redux'
 
 import {mirrorStatus} from '../actions/find-mirror-action'
+import {UrlFormView} from './url-form-view'
 
 class HeaderView extends Component {
     constructor(props) {
@@ -27,13 +28,11 @@ class HeaderView extends Component {
         if (!this.props.isMirrorUp) {
             return (
                 <div>
-                    <form onSubmit={this.handleSubmitUrl}>
-                        <label>
-                        Enter Url:
-                        <input type="text"  value={this.state.url} onChange={this.handleUrlChange}/>
-                        </label>
-                        <input type="submit" value="Submit" />
-                    </form>
+                <UrlFormView 
+                    url={this.state.url} 
+                    handleSubmitUrl={this.handleSubmitUrl}
+                    handleUrlChange={this.handleUrlChange}
+                />
                 </div>
             );
         }
