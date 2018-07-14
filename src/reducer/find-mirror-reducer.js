@@ -19,7 +19,7 @@ export function mirrorStatusReducer(state = INITIAL_STATE_MIRROR_STATUS, action)
                 mirrorFound: true
             });
         default:
-        return state;
+            return state;
     }
 }
 

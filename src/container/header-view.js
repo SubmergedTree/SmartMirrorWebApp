@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {getMirrorStatus} from '../selectors/index' 
+import {getMirrorStatus, getUrl} from '../selectors/index' 
 import {bindActionCreators} from 'redux'
 
 import {mirrorStatus} from '../actions/find-mirror-action'
@@ -28,7 +28,8 @@ class HeaderView extends Component {
     }
 
     render() {
-        if (!this.props.accepted) {
+        const url = this.props.url
+        if (url.length === 0) {
             return (
                 <div>
                     <UrlFormView 
@@ -53,7 +54,8 @@ class HeaderView extends Component {
 
 function mapStateToProps(state) {
     return {
-        isMirrorUp: getMirrorStatus(state)
+        isMirrorUp: getMirrorStatus(state),
+        url: getUrl(state)
     };
 }
 
