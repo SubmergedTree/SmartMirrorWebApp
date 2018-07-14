@@ -1,10 +1,14 @@
 import {FindMirrorTypes} from '../actions/find-mirror-action'
 
-const INITIAL_STATE = {
+const INITIAL_STATE_MIRROR_STATUS = {
     mirrorFound: false
 };
 
-function findMirrorStatusReducer(state = INITIAL_STATE, action) {
+const INITIAL_STATE_ACCEPT_URL = {
+    url: ''
+};
+
+export function mirrorStatusReducer(state = INITIAL_STATE_MIRROR_STATUS, action) {
     switch(action.type) {
         case FindMirrorTypes.STATUS_ERROR:
             return Object.assign({}, state, {
@@ -19,4 +23,22 @@ function findMirrorStatusReducer(state = INITIAL_STATE, action) {
     }
 }
 
-export default findMirrorStatusReducer;
+
+export function acceptUrlReducer(state = INITIAL_STATE_ACCEPT_URL, action) {
+    switch(action.type) {
+        case FindMirrorTypes.ACCEPT_URL:
+            return Object.assign({}, state, {
+                url: action.url
+            });
+        default:
+            return state;
+    }
+
+   /* if (state.type.localCompare( FindMirrorTypes.ACCEPT_URL)) {
+        console.log("foo")
+        return Object.assign({}, state, {
+            url: action.url
+        });
+    }
+    return state;*/
+}
