@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {getMirrorStatus, getUrl} from '../selectors/index' 
 import {bindActionCreators} from 'redux'
 
-import {mirrorStatus} from '../actions/find-mirror-action'
+import {mirrorStatus, acceptUrl, logout} from '../actions/find-mirror-action'
 import {UrlFormView, UrlAcceptButton} from './url-form-view'
 
 class HeaderView extends Component {
@@ -13,18 +13,23 @@ class HeaderView extends Component {
 
         this.handleSubmitUrl = this.handleSubmitUrl.bind(this);
         this.handleUrlChange = this.handleUrlChange.bind(this);
+        this.handleLogout = this.handleLogout.bind(this)
     }
 
     handleSubmitUrl(event) {
-        if (this.props.urlValid) {
-            alert(this.state.url)
-        }
+        //alert(this.state.url)
+        this.props.acceptUrl(this.state.url)
         event.preventDefault();
     }
 
     handleUrlChange(event) {
         this.setState({url: event.target.value})
+        this.props.mirrorStatus(event.target.value)
+    }
 
+    handleLogout(event) {
+        this.setState({url: ''})
+        this.props.logout()
     }
 
     render() {
@@ -46,7 +51,10 @@ class HeaderView extends Component {
             );
         }
         return (
-            <div> Mirror found</div>
+            <div> 
+                Mirror found
+                <button onClick={e => this.handleLogout(e)}>Logout</button>
+            </div>
         );
     }
 }
@@ -60,7 +68,11 @@ function mapStateToProps(state) {
 }
 
 function dispatchInput(dispatch) {
-    return bindActionCreators({mirrorStatus: mirrorStatus}, dispatch);
+    return bindActionCreators({
+        mirrorStatus: mirrorStatus,
+        acceptUrl: acceptUrl,
+        logout: logout
+    }, dispatch);
 }
 
 export default connect(mapStateToProps, dispatchInput)(HeaderView);
