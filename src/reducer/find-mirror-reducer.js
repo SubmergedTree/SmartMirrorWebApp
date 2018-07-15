@@ -24,7 +24,7 @@ export function mirrorStatusReducer(state = INITIAL_STATE_MIRROR_STATUS, action)
 }
 
 
-export function acceptUrlReducer(state = INITIAL_STATE_ACCEPT_URL, action) {
+export function urlReducer(state = INITIAL_STATE_ACCEPT_URL, action) {
     switch(action.type) {
         case FindMirrorTypes.ACCEPT_URL:
             return Object.assign({}, state, {

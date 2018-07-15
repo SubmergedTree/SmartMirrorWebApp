@@ -1,4 +1,4 @@
-import {mirrorStatusReducer, acceptUrlReducer} from '../find-mirror-reducer'
+import {mirrorStatusReducer, urlReducer} from '../find-mirror-reducer'
 import {FindMirrorTypes} from '../../actions/find-mirror-action'
 
 describe('find-mirror-reducer', () => {
@@ -35,7 +35,7 @@ describe('find-mirror-reducer', () => {
 
 
     it('should return empty url as default value', () => {
-        expect(acceptUrlReducer(undefined, {})).toEqual(
+        expect(urlReducer(undefined, {})).toEqual(
             {
                 url: ''
             }
@@ -44,7 +44,7 @@ describe('find-mirror-reducer', () => {
 
 
     it('should returns set url', () => {
-        expect(acceptUrlReducer({}, {
+        expect(urlReducer({}, {
             type: FindMirrorTypes.ACCEPT_URL,
             url: 'www.url.com'
         })).toEqual(
