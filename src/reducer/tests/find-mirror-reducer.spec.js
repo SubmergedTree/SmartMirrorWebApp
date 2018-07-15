@@ -54,4 +54,14 @@ describe('find-mirror-reducer', () => {
         )
     });
 
+    it('should return empty url', () => {
+        expect(urlReducer({}, {
+            type: FindMirrorTypes.LOGOUT
+        })).toEqual(
+            {
+                url: ''
+            }
+        )
+    });
+
 });

@@ -6,7 +6,7 @@ export const FindMirrorTypes = {
     STATUS_REQUEST: 'FIND_MIRROR_STATUS_REQUEST',
     STATUS_ERROR: 'FIND_MIRROR_STATUS_ERROR',
     STATUS_SUCCESS: 'FIND_MIRROR_STATUS_SUCCESS',
-    STATUS_LOGOUT: 'STATUS_LOGOUT'
+    LOGOUT: 'LOGOUT'
 };
 
 
@@ -57,6 +57,6 @@ export const acceptUrl = (url) => {
 
 export const logout = () => {
     return {
-        type: FindMirrorTypes.STATUS_LOGOUT
+        type: FindMirrorTypes.LOGOUT
     };
 }

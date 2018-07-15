@@ -18,9 +18,9 @@ describe('acceptUrl', () => {
 });
 
 describe('logout', () => {
-  it('should create STATUS_LOGOUT action', () => {
+  it('should create LOGOUT action', () => {
     expect(logout()).toEqual({
-      type: FindMirrorTypes.STATUS_LOGOUT
+      type: FindMirrorTypes.LOGOUT
     })
   });
 });

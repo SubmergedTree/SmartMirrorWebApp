@@ -30,6 +30,10 @@ export function urlReducer(state = INITIAL_STATE_ACCEPT_URL, action) {
             return Object.assign({}, state, {
                 url: action.url
             });
+        case FindMirrorTypes.LOGOUT:     
+            return Object.assign({}, state, {
+                url: ''
+            });
         default:
             return state;
     }
