@@ -5,7 +5,8 @@ export const FindMirrorTypes = {
     ACCEPT_URL: 'FIND_MIRROR_ACCEPT_URL',
     STATUS_REQUEST: 'FIND_MIRROR_STATUS_REQUEST',
     STATUS_ERROR: 'FIND_MIRROR_STATUS_ERROR',
-    STATUS_SUCCESS: 'FIND_MIRROR_STATUS_SUCCESS'
+    STATUS_SUCCESS: 'FIND_MIRROR_STATUS_SUCCESS',
+    STATUS_LOGOUT: 'STATUS_LOGOUT'
 };
 
 
@@ -32,7 +33,6 @@ function fetchMirrorStatusFailure(ex) {
 
 export const mirrorStatus = (url) => {
     url = url + UrlEndpoints.status;
-    console.log(url);
     return dispatch => {
         try {
             dispatch(fetchMirrorStatusRequest())
@@ -54,3 +54,9 @@ export const acceptUrl = (url) => {
     };
 }
 
+
+export const logout = () => {
+    return {
+        type: FindMirrorTypes.STATUS_LOGOUT
+    };
+}

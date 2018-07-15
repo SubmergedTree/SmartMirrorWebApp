@@ -1,7 +1,7 @@
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import fetchMock from 'fetch-mock'
-import {acceptUrl, mirrorStatus,FindMirrorTypes, fetchTodos} from "../find-mirror-action";
+import {acceptUrl, mirrorStatus,FindMirrorTypes, logout} from "../find-mirror-action";
 import expect from 'expect'
 
 const mockStore = configureMockStore([ thunk ]);
@@ -17,7 +17,13 @@ describe('acceptUrl', () => {
   });
 });
 
-
+describe('logout', () => {
+  it('should create STATUS_LOGOUT action', () => {
+    expect(logout()).toEqual({
+      type: FindMirrorTypes.STATUS_LOGOUT
+    })
+  });
+});
 
 describe('mirrorStatus is triggered and STATUS_REQUEST type is emmitted', () => {
   afterEach(() => {
