@@ -1,4 +1,5 @@
 import 'isomorphic-fetch';
+import {UrlEndpoints} from '../urlEndpoints'
 
 export const FindMirrorTypes = {
     ACCEPT_URL: 'FIND_MIRROR_ACCEPT_URL',
@@ -30,6 +31,8 @@ function fetchMirrorStatusFailure(ex) {
 
 
 export const mirrorStatus = (url) => {
+    url = url + UrlEndpoints.status;
+    console.log(url);
     return dispatch => {
         try {
             dispatch(fetchMirrorStatusRequest())

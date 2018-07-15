@@ -35,7 +35,7 @@ describe('mirrorStatus is triggered and STATUS_REQUEST type is emmitted', () => 
 
     const store = mockStore({status: ''});
     
-    return store.dispatch(mirrorStatus('http://foo.com/status')).then(() => {
+    return store.dispatch(mirrorStatus('http://foo.com')).then(() => {
       expect(store.getActions()).toEqual(expectedActions)
     })
 
@@ -52,7 +52,7 @@ describe('mirrorStatus is triggered and STATUS_REQUEST type is emmitted', () => 
 
       const store = mockStore({status: ''});
 
-      return store.dispatch(mirrorStatus('http://foo.com/status')).then(() => {
+      return store.dispatch(mirrorStatus('http://foo.com')).then(() => {
         expect(store.getActions()).toEqual(expectedActions)
       })
 
