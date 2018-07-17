@@ -8,7 +8,7 @@ class BodyView extends Component {
     render() {
         if (this.props.mirrorAccepted) {
             return (
-                <div>
+                <div className="sidebar">
                     <SelectUserView/>
                 </div>
             );                    
