@@ -36,25 +36,36 @@ class HeaderView extends Component {
         const url = this.props.url
         if (url.length === 0) {
             return (
-                <div>
-                    <UrlFormView 
-                        url={this.state.url} 
-                        handleSubmitUrl={this.handleSubmitUrl}
-                        handleUrlChange={this.handleUrlChange}
-                    />
-                {this.props.isMirrorUp === true &&
-                    <UrlAcceptButton
-                        handleSubmitUrl={this.handleSubmitUrl}
-                    />
-                }
-                </div>
+                <React.Fragment>
+                    <div className="headerLabel">
+                         SmartMirror Web App
+                    </div>
+                    <div className="headerUrlForm">
+                        <UrlFormView 
+                            url={this.state.url} 
+                            handleSubmitUrl={this.handleSubmitUrl}
+                            handleUrlChange={this.handleUrlChange}
+                        />
+                    </div>
+                        <div className="headerSubmitButton">   
+                        {this.props.isMirrorUp === true &&
+                            <UrlAcceptButton
+                                handleSubmitUrl={this.handleSubmitUrl}
+                            />
+                        }
+                    </div>
+                </React.Fragment>
             );
         }
         return (
-            <div> 
-                Mirror found
+            <React.Fragment>
+            <div className="headerLabel">
+            SmartMirror Web App
+            </div>
+            <div className="headerLogoutButton"> 
                 <button onClick={e => this.handleLogout(e)}>Logout</button>
             </div>
+            </React.Fragment>
         );
     }
 }

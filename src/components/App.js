@@ -3,7 +3,7 @@ import HeaderView from '../container/header-view'
 import BodyView from '../container/body-view'
 
 const App = () => (
-    <div>
+    <div className="grid-wrapper">
     <HeaderView/>
     <BodyView/>
     </div>
