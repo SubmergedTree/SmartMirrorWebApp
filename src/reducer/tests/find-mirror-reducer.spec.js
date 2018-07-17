@@ -34,6 +34,19 @@ describe('find-mirror-reducer', () => {
     });
 
 
+    it('should handle logout', () => {
+        expect(mirrorStatusReducer([], {
+            type: FindMirrorTypes.LOGOUT,
+            status: 'up'
+        })).toEqual (
+            {
+                mirrorFound: false
+            }
+        )
+
+    });
+
+
     it('should return empty url as default value', () => {
         expect(urlReducer(undefined, {})).toEqual(
             {
@@ -54,12 +67,12 @@ describe('find-mirror-reducer', () => {
         )
     });
 
-    it('should return empty url', () => {
+    it('should return empty url and set mirrorFound to false', () => {
         expect(urlReducer({}, {
             type: FindMirrorTypes.LOGOUT
         })).toEqual(
             {
-                url: ''
+                url: '',
             }
         )
     });

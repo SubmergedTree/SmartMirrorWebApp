@@ -18,6 +18,10 @@ export function mirrorStatusReducer(state = INITIAL_STATE_MIRROR_STATUS, action)
             return Object.assign({}, state, {
                 mirrorFound: true
             });
+        case FindMirrorTypes.LOGOUT:
+            return Object.assign({}, state, {
+                mirrorFound: false
+            });
         default:
             return state;
     }
