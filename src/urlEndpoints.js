@@ -1,4 +1,5 @@
 
 export const UrlEndpoints = {
-    status: '/status'
+    status: '/status',
+    getUsers: '/getUsers'
 }
