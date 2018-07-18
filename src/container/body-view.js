@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux'
 import {getUrl, mirrorAccepted} from '../selectors/index' 
-import {SelectUserView} from './select-user-view'
+import SelectUserView from './select-user-view'
 
 class BodyView extends Component {
     render() {
