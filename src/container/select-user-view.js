@@ -7,16 +7,14 @@ import { getUsers as getUsersAction } from '../actions/user-actions'
 
 
 class SelectUserView extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            
-        };
-    }
 
     componentDidMount() {
         this.props.getUsersAction(this.props.url);
+    }
+
+    onUserClick(key) {
+        const clickedUser = this.props.users[key];
+        
     }
 
     render() {
@@ -27,7 +25,9 @@ class SelectUserView extends Component {
                 Select User
                <ul>
                     {
-                        users.map((item, key) => <li key={key}> <a>{item.username}</a></li>)
+                        users.map((item, key) => {
+                            return <li key={key} onClick={() => this.onUserClick(key)}> <a>{item.username}</a></li>
+                        })
                     }
                 </ul>
             </div>
