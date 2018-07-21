@@ -1,7 +1,7 @@
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import fetchMock from 'fetch-mock'
-import {getUsers, USERTYPES} from "../../actions/user-actions";
+import {getUsers, selectUser, USERTYPES} from "../../actions/user-actions";
 import expect from 'expect'
 
 const mockStore = configureMockStore([ thunk ]);
@@ -60,4 +60,22 @@ describe('getUsers', () => {
           expect(store.getActions()).toEqual(expectedActions)
         })
     });
+});
+
+
+describe('selectUser', () => {
+
+    it('should return an object which contains SELECT_USER type and selectedUser', () => {
+        const selectedUser = {
+            username: 'jsmith',
+            name: 'Smith',
+            prename: 'John'
+        }
+
+        expect(selectUser(selectedUser)).toEqual({
+            type: USERTYPES.SELECT_USER,
+            selectedUser: selectedUser
+          })
+    });
+
 });

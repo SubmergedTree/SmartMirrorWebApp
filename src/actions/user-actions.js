@@ -5,7 +5,8 @@ import {UrlEndpoints} from '../urlEndpoints'
 export const USERTYPES = {
     GETUSERS_SUCCESS: 'GETUSERS_SUCCESS',
     GETUSERS_ERROR: 'GETUSERS_ERROR',
-    GETUSERS_REQUEST: 'GETUSERS_REQUEST'
+    GETUSERS_REQUEST: 'GETUSERS_REQUEST',
+    SELECT_USER: 'SELECT_USER'
 };
 
 
@@ -43,3 +44,10 @@ export const getUsers = (url) => {
         }
       }
 };
+
+export const selectUser = (selectedUser) => {
+    return {
+        type: USERTYPES.SELECT_USER,
+        selectedUser: selectedUser
+    };
+}
