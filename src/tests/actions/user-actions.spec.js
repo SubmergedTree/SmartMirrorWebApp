@@ -1,7 +1,7 @@
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import fetchMock from 'fetch-mock'
-import {getUsers, USERTYPES} from "../user-actions";
+import {getUsers, USERTYPES} from "../../actions/user-actions";
 import expect from 'expect'
 
 const mockStore = configureMockStore([ thunk ]);

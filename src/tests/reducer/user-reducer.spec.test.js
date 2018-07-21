@@ -1,4 +1,4 @@
-import { usersReducer } from '../user-reducer'
+import { usersReducer } from '../../reducer/user-reducer'
 import { FindMirrorTypes } from '../../actions/find-mirror-action'
 import { USERTYPES } from "../../actions/user-actions";
 

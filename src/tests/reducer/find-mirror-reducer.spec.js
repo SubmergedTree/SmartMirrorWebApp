@@ -1,4 +1,4 @@
-import {mirrorStatusReducer, urlReducer} from '../find-mirror-reducer'
+import {mirrorStatusReducer, urlReducer} from '../../reducer/find-mirror-reducer'
 import {FindMirrorTypes} from '../../actions/find-mirror-action'
 
 describe('find-mirror-reducer', () => {

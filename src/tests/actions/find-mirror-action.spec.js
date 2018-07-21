@@ -1,7 +1,7 @@
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import fetchMock from 'fetch-mock'
-import {acceptUrl, mirrorStatus,FindMirrorTypes, logout} from "../find-mirror-action";
+import {acceptUrl, mirrorStatus,FindMirrorTypes, logout} from "../../actions/find-mirror-action";
 import expect from 'expect'
 
 const mockStore = configureMockStore([ thunk ]);
