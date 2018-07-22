@@ -50,6 +50,13 @@ describe('usersReducer', () => {
 
 describe('selectUserReducer', () => {
 
+    const selectedUser = {
+        username: 'jsmith',
+        name: 'Smith',
+        prename: 'John'
+    }
+
+
     it('should return the initial state', () => {
         expect(selectUserReducer(undefined, {})).toEqual(
             {
@@ -61,12 +68,12 @@ describe('selectUserReducer', () => {
     it('should return current state', () => {
         expect(selectUserReducer(
             {
-                selectedUser: "foo"
+                selectedUser: selectedUser
             }, {
                 type: USERTYPES.GETUSERS_SUCCESS
             })).toEqual(
             {
-                selectedUser: "foo"
+                selectedUser: selectedUser
             }
         )
     });
@@ -77,10 +84,10 @@ describe('selectUserReducer', () => {
             selectedUser: 'bar'
         }, {
             type: USERTYPES.SELECT_USER,
-            selectedUser: 'foo'
+            selectedUser: selectedUser
         })).toEqual(
             {
-                selectedUser: 'foo'
+                selectedUser: selectedUser
             }
         )
     });
@@ -88,7 +95,7 @@ describe('selectUserReducer', () => {
     it('should set return state with resetted selectedUser', () => {
         expect(selectUserReducer(
             {
-            selectedUser: 'bar'
+            selectedUser: selectedUser
         }, {
             type: FindMirrorTypes.LOGOUT,
         })).toEqual(
