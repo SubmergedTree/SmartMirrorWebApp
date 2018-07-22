@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux'
 
 import { getUsers as getUsersSelector, getUrl} from '../selectors/index' 
-import { getUsers as getUsersAction } from '../actions/user-actions'
+import { getUsers as getUsersAction, selectUser } from '../actions/user-actions'
 
 
 class SelectUserView extends Component {
@@ -14,7 +14,7 @@ class SelectUserView extends Component {
 
     onUserClick(key) {
         const clickedUser = this.props.users[key];
-        
+        this.props.selectUser(clickedUser);
     }
 
     render() {
@@ -56,7 +56,8 @@ function mapStateToProps(state) {
 
 function dispatchInput(dispatch) {
     return bindActionCreators({
-        getUsersAction: getUsersAction
+        getUsersAction: getUsersAction,
+        selectUser: selectUser
     }, dispatch);
 }
 
