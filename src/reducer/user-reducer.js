@@ -34,6 +34,10 @@ export function selectUserReducer(state = INITIAL_STATE_SELECTED_USER, action) {
             return Object.assign({}, state, {
                 selectedUser: action.selectedUser
             });
+        case FindMirrorTypes.LOGOUT:
+            return Object.assign({}, state, {
+                selectedUser: null
+            });
         default:
             return state;
     }

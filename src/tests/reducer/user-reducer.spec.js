@@ -85,4 +85,17 @@ describe('selectUserReducer', () => {
         )
     });
 
+    it('should set return state with resetted selectedUser', () => {
+        expect(selectUserReducer(
+            {
+            selectedUser: 'bar'
+        }, {
+            type: FindMirrorTypes.LOGOUT,
+        })).toEqual(
+            {
+                selectedUser: null
+            }
+        )
+    });
+
 });
