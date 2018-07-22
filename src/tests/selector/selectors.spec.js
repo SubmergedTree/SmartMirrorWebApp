@@ -1,4 +1,5 @@
-import { mirrorAccepted, getMirrorStatus, getUrl, getUsers } from '../../selectors/index'
+import { mirrorAccepted, getMirrorStatus,
+     getUrl, getUsers, getSelectedUser } from '../../selectors/index'
 
 
 describe('mirrorAccepted', () => {
@@ -90,3 +91,16 @@ describe('getUsers', () => {
         expect(getUsers(stateMock)).toEqual(usersMock);
     });
 });
+
+describe('getSelectedUser', () => {
+
+    it('should return selectedUser', () => {
+        const stateMock = {
+            selectUserReducer: {
+                selectedUser: 'foo'
+            }
+        };
+        expect(getSelectedUser(stateMock)).toEqual('foo');
+    });
+
+})
