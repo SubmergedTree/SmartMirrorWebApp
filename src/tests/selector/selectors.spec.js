@@ -1,5 +1,5 @@
 import { mirrorAccepted, getMirrorStatus,
-     getUrl, getUsers, getSelectedUser } from '../../selectors/index'
+     getUrl, getUsers, getSelectedUser } from '../../selectors'
 
 
 describe('mirrorAccepted', () => {
