@@ -51,3 +51,10 @@ export const selectUser = (selectedUser) => {
         selectedUser: selectedUser
     };
 }
+
+export const resetSelectedUser = () => {
+    return {
+        type: USERTYPES.SELECT_USER,
+        selectedUser: null
+    };
+}
