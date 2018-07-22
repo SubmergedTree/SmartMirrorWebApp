@@ -1,8 +1,8 @@
-import { usersReducer } from '../../reducer/user-reducer'
+import { usersReducer, selectUserReducer } from '../../reducer/user-reducer'
 import { FindMirrorTypes } from '../../actions/find-mirror-action'
 import { USERTYPES } from "../../actions/user-actions";
 
-describe('find-mirror-reducer', () => {
+describe('usersReducer', () => {
 
     it('should return the initial state ', () => {
         expect(usersReducer(undefined, {})).toEqual(
@@ -45,4 +45,44 @@ describe('find-mirror-reducer', () => {
         )
 
     });
+});
+
+
+describe('selectUserReducer', () => {
+
+    it('should return the initial state', () => {
+        expect(selectUserReducer(undefined, {})).toEqual(
+            {
+                selectedUser: null
+            }
+        )
+    });
+
+    it('should return current state', () => {
+        expect(selectUserReducer(
+            {
+                selectedUser: "foo"
+            }, {
+                type: USERTYPES.GETUSERS_SUCCESS
+            })).toEqual(
+            {
+                selectedUser: "foo"
+            }
+        )
+    });
+
+    it('should set return state with filled selectedUser', () => {
+        expect(selectUserReducer(
+            {
+            selectedUser: 'bar'
+        }, {
+            type: USERTYPES.SELECT_USER,
+            selectedUser: 'foo'
+        })).toEqual(
+            {
+                selectedUser: 'foo'
+            }
+        )
+    });
+
 });
