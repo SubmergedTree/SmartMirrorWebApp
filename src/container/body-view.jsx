@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux'
 import {getUrl, mirrorAccepted} from '../selectors/index' 
 import SelectUserView from './select-user-view'
+import UpdateWidgetView from './update-widget-view'
+
 
 class BodyView extends Component {
     render() {
@@ -10,6 +12,7 @@ class BodyView extends Component {
             return (
                 <div className="sidebar">
                     <SelectUserView/>
+                    <UpdateWidgetView/>
                 </div>
             );                    
         }
