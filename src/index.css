@@ -40,6 +40,12 @@
 
 /*** BODY ***/
 
+.body {
+  border-style: solid;
+  border-color: yellow;
+  grid-column: 15 / 102;
+  grid-row: 15 / 102;
+}
 
 /*** SIDEBAR ***/
 

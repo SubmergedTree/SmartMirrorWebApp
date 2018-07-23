@@ -10,10 +10,14 @@ class BodyView extends Component {
     render() {
         if (this.props.mirrorAccepted) {
             return (
+                <React.Fragment>
                 <div className="sidebar">
                     <SelectUserView/>
-                    <UpdateWidgetView/>
                 </div>
+                <div className="body">
+                <UpdateWidgetView/>
+                </div>
+                </React.Fragment>
             );                    
         }
         return (
