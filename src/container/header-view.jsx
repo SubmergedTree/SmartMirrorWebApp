@@ -18,8 +18,9 @@ class HeaderView extends Component {
 
     handleSubmitUrl(event) {
         //alert(this.state.url)
-        this.props.acceptUrl(this.state.url)
-        event.preventDefault();
+        if (this.props.isMirrorUp)
+            this.props.acceptUrl(this.state.url)
+            event.preventDefault();
     }
 
     handleUrlChange(event) {
