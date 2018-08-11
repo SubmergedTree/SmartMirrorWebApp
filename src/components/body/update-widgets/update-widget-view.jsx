@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux'
 
-import { getSelectedUser } from '../selectors'
-import { PublicHolidayForm, WeatherForecastForm, WeatherTodayForm, NoteForm } from './update-widget-forms'
+import { getSelectedUser } from '../../../selectors'
+import { PublicHolidayForm, WeatherForecastForm, WeatherTodayForm, NoteForm } from '../../../components/body/update-widgets/update-widget-forms'
 
 class UpdateWidgetView extends Component {
     constructor(props) {
@@ -20,7 +20,8 @@ class UpdateWidgetView extends Component {
 
     render() {
         const selectedUser = this.props.selectedUser;
-        if (selectedUser) {
+        const widgetData = this.props.widgetData;
+        if (selectedUser && widgetData) {
             return (
                 <React.Fragment>
                     
@@ -54,6 +55,7 @@ class UpdateWidgetView extends Component {
         } else {
             return (
                 <div>
+                    Loading
                 </div>
             );
         }

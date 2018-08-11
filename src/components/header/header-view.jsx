@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {getMirrorStatus, getUrl} from '../selectors/index' 
+import {getMirrorStatus, getUrl} from '../../selectors' 
 import {bindActionCreators} from 'redux'
 
-import {mirrorStatus, acceptUrl, logout} from '../actions/find-mirror-action'
+import {mirrorStatus, acceptUrl, logout} from '../../actions/find-mirror-action'
 import {UrlFormView, UrlAcceptButton} from './url-form-view'
 
 class HeaderView extends Component {

@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux'
 
-import { getUsers as getUsersSelector, getUrl} from '../selectors/index' 
-import { getUsers as getUsersAction, selectUser } from '../actions/user-actions'
+import { getUsers as getUsersSelector, getUrl} from '../../../selectors' 
+import { getUsers as getUsersAction, selectUser } from '../../../actions/user-actions'
 
 
 class SelectUserView extends Component {
@@ -32,18 +32,6 @@ class SelectUserView extends Component {
                 </ul>
             </div>
         );
-
-     /*   return(
-            <div className="centerizedHeading">
-                Select User
-                <ul>
-                <li><a className="active">User 1</a></li>
-                <li><a> News</a></li>
-                <li><a> Contact</a></li>
-                <li><a> About</a></li>
-                </ul>
-            </div>
-        );*/
     }
 }
 
