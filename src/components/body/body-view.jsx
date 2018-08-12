@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux'
-import {getUrl, mirrorAccepted} from '../../selectors' 
+import {getUrl, mirrorAccepted, getSelectedUser} from '../../selectors' 
 import SelectUserView from './sidebar/select-user-view'
 import UpdateWidgetView from './update-widgets/update-widget-view'
 import UpdateImageView from './update-images/update-images-view'
@@ -9,7 +9,15 @@ import BodySelector from './body-selector-view'
 
 class BodyView extends Component {
     render() {
-        if (this.props.mirrorAccepted) {
+        if (this.props.mirrorAccepted && !this.props.selectedUser) {
+            return (
+                <React.Fragment>
+                <div className="sidebar">
+                    <SelectUserView/>
+                </div>
+                </React.Fragment>
+            );                    
+        } else if (this.props.mirrorAccepted) {
             return (
                 <React.Fragment>
                 <div className="sidebar">
@@ -21,7 +29,7 @@ class BodyView extends Component {
                 <UpdateImageView/>
                 </div>
                 </React.Fragment>
-            );                    
+            );  
         }
         return (
             <div/>
@@ -32,6 +40,7 @@ class BodyView extends Component {
 function mapStateToProps(state) {
     return {
         url: getUrl(state),
+        selectedUser: getSelectedUser(state),
         mirrorAccepted: mirrorAccepted(state)
     };
 }

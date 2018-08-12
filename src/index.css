@@ -78,7 +78,7 @@
   grid-row: 5 / 10;
 }
 
-/*** SIDEBAR ***/
+/*** Navigation ***/
 
 .sidebar {
   grid-column: 1 / 15;
@@ -123,12 +123,25 @@ li a:hover:not(.activeSidebar) {
 }
 
 
-/*** Body Selector ***/
-
 .bodySelector{
-  grid-column: 15 / 102;
-  grid-row: 15 / 102;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 
+  grid-column: 1 / 15;
+}
+
+.bodySelectorFloat {
+  float: left;
+  color: aquamarine;
+}
+
+.bodySelectorFloatActive {
+  float: left;
+  color: aquamarine;
+  background-color: #4CAF50;
+  color: white;
 }
 
 /*** MISC ***/

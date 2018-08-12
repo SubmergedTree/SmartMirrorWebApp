@@ -1,5 +1,5 @@
 import { mirrorAccepted, getMirrorStatus,
-     getUrl, getUsers, getSelectedUser } from '../../selectors'
+     getUrl, getUsers, getSelectedUser, getSelectedBodyTab } from '../../selectors'
 
 
 describe('mirrorAccepted', () => {
@@ -101,6 +101,19 @@ describe('getSelectedUser', () => {
             }
         };
         expect(getSelectedUser(stateMock)).toEqual('foo');
+    });
+
+})
+
+describe('getSelectedBodyTab', () => {
+
+    it('should return selected tab', () => {
+        const stateMock = {
+            bodySelectorReducer: {
+                tab: 'IMAGES'
+            }
+        };
+        expect(getSelectedBodyTab(stateMock)).toEqual('IMAGES');
     });
 
 })
