@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux'
 
-import { getUsers as getUsersSelector, getUrl} from '../../../selectors' 
+import { getUsers as getUsersSelector, getUrl, getSelectedUser} from '../../../selectors' 
 import { getUsers as getUsersAction, selectUser } from '../../../actions/user-actions'
 
 
@@ -23,10 +23,13 @@ class SelectUserView extends Component {
         return(
             <div className="centerizedHeading">
                 Select User
-               <ul>
+               <ul className="ulSidebar">
                     {
                         users.map((item, key) => {
-                            return <li key={key} onClick={() => this.onUserClick(key)}> <a>{item.username}</a></li>
+                            if (this.props.selectedUser && item.username === this.props.selectedUser.username)
+                                return <li key={key} onClick={() => this.onUserClick(key)}className="activeSidebar"> <a>{item.username}</a></li>
+                            else
+                                return <li key={key} onClick={() => this.onUserClick(key)}> <a>{item.username}</a></li>    
                         })
                     }
                 </ul>
@@ -38,6 +41,7 @@ class SelectUserView extends Component {
 function mapStateToProps(state) {
     return {
         users: getUsersSelector(state),
+        selectedUser: getSelectedUser(state),
         url: getUrl(state)
     };
 }

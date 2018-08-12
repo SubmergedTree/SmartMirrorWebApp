@@ -93,7 +93,7 @@
 }
 
 
-ul {
+.ulSidebar {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -112,16 +112,24 @@ li a {
     text-decoration: none;
 }
 
-li a.active {
+.activeSidebar {
     background-color: #4CAF50;
     color: white;
 }
 
-li a:hover:not(.active) {
+li a:hover:not(.activeSidebar) {
     background-color: #555;
     color: white;
 }
 
+
+/*** Body Selector ***/
+
+.bodySelector{
+  grid-column: 15 / 102;
+  grid-row: 15 / 102;
+
+}
 
 /*** MISC ***/
 
