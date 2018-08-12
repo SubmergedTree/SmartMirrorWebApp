@@ -55,6 +55,7 @@ class UpdateWidgetView extends Component {
         } else {
             return (
                 <React.Fragment>
+                    Loading Widgets
                 </React.Fragment>
             );
         }

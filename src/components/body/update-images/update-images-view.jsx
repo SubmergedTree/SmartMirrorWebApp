@@ -6,8 +6,9 @@ import {bindActionCreators} from 'redux'
 class UpdateImageView extends Component {
     render() {
         return(
-            <div>
-            </div>
+        <React.Fragment>
+            Loading Images
+        </React.Fragment>       
         );
     }
 }

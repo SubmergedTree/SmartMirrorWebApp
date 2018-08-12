@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux'
-import {getUrl, mirrorAccepted, getSelectedUser} from '../../selectors' 
+import {getUrl, mirrorAccepted, getSelectedUser, getSelectedBodyTab} from '../../selectors' 
 import SelectUserView from './sidebar/select-user-view'
 import UpdateWidgetView from './update-widgets/update-widget-view'
 import UpdateImageView from './update-images/update-images-view'
@@ -9,6 +9,7 @@ import BodySelector from './body-selector-view'
 
 class BodyView extends Component {
     render() {
+        const selectedTab = this.props.getSelectedBodyTab
         if (this.props.mirrorAccepted && !this.props.selectedUser) {
             return (
                 <React.Fragment>
@@ -25,8 +26,8 @@ class BodyView extends Component {
                 </div>
                 <div className="body">
                 <BodySelector/>
-                <UpdateWidgetView/>
-                <UpdateImageView/>
+                { selectedTab == 'WIDGETS' ? <UpdateWidgetView/> : <React.Fragment/> }
+                { selectedTab == 'IMAGES' ? <UpdateImageView/> : <React.Fragment/> }
                 </div>
                 </React.Fragment>
             );  
@@ -41,7 +42,8 @@ function mapStateToProps(state) {
     return {
         url: getUrl(state),
         selectedUser: getSelectedUser(state),
-        mirrorAccepted: mirrorAccepted(state)
+        mirrorAccepted: mirrorAccepted(state),
+        getSelectedBodyTab: getSelectedBodyTab(state)
     };
 }
 
