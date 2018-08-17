@@ -22,7 +22,7 @@ class BodySelectorView extends Component {
                     <li className="bodySelectorFloat" onClick={this.props.selectWidgetsTab}> <a>Widgets</a></li>
                 </ul>
             );
-        } else if (selectedTab == this.TAB_WIDGETS) {
+        } else if (selectedTab === this.TAB_WIDGETS) {
             return (
                 <ul className="bodySelector">
                     <li className="bodySelectorFloat" onClick={this.props.selectImagesTab}> <a>Images</a></li>

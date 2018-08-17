@@ -26,8 +26,8 @@ class BodyView extends Component {
                 </div>
                 <div className="body">
                 <BodySelector/>
-                { selectedTab == 'WIDGETS' ? <UpdateWidgetView/> : <React.Fragment/> }
-                { selectedTab == 'IMAGES' ? <UpdateImageView/> : <React.Fragment/> }
+                { selectedTab === 'WIDGETS' ? <UpdateWidgetView/> : <React.Fragment/> }
+                { selectedTab === 'IMAGES' ? <UpdateImageView/> : <React.Fragment/> }
                 </div>
                 </React.Fragment>
             );  

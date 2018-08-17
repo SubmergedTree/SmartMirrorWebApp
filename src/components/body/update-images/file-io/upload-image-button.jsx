@@ -7,8 +7,8 @@ import { addFiles } from '../../../../actions/file-io-action'
 class UploadImageButton extends Component {
     render() {
         return (
-         <div class="upload-btn-wrapper">
-            <button class="btn">Upload a file</button>
+         <div className="upload-btn-wrapper">
+            <button className="button">Upload an image</button>
             <input type="file" accept='image/*' onChange={(event) => {this.props.addFiles(event.target.files)}}
               multiple/>
          </div>
@@ -23,7 +23,7 @@ function mapStateToProps(state) {
 
 function dispatchInput(dispatch) {
     return bindActionCreators({
-        addFilesFilesystem
+        addFiles
     }, dispatch);
 }
 
