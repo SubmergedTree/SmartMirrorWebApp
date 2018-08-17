@@ -1,5 +1,5 @@
 import { mirrorAccepted, getMirrorStatus,
-     getUrl, getUsers, getSelectedUser, getSelectedBodyTab } from '../../selectors'
+     getUrl, getUsers, getSelectedUser, getSelectedBodyTab, getfileApiIsSupported, getImages } from '../../selectors'
 
 
 describe('mirrorAccepted', () => {
@@ -114,6 +114,32 @@ describe('getSelectedBodyTab', () => {
             }
         };
         expect(getSelectedBodyTab(stateMock)).toEqual('IMAGES');
+    });
+
+})
+
+describe('getfileApiIsSupported', () => {
+
+    it('should return if file api is supported', () => {
+        const stateMock = {
+            fileApiIsSupportedReducer: {
+                fileApiSupported: true
+            }
+        };
+        expect(getfileApiIsSupported(stateMock)).toEqual(true);
+    });
+
+})
+
+describe('getImages', () => {
+
+    it('should return images', () => {
+        const stateMock = {
+            addImageReducer: {
+                images: ["1", "2"]
+            }
+        };
+        expect(getImages(stateMock)).toEqual(["1", "2"]);
     });
 
 })
