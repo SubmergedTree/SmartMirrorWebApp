@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux'
 import { addFiles } from '../../../../actions/file-io-action'
+import { getSelectedUser } from '../../../../selectors'
 
 
 class UploadImageButton extends Component {
@@ -9,7 +10,7 @@ class UploadImageButton extends Component {
         return (
          <div className="upload-btn-wrapper">
             <button className="button">Upload an image</button>
-            <input type="file" accept='image/*' onChange={(event) => {this.props.addFiles(event.target.files)}}
+            <input type="file" accept='image/*' onChange={(event) => {this.props.addFiles(event.target.files, this.props.selectedUser)}}
               multiple/>
          </div>
         );
@@ -18,6 +19,7 @@ class UploadImageButton extends Component {
 
 function mapStateToProps(state) {
     return {
+        selectedUser: getSelectedUser(state)
     };
 }
 

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux'
 import { addFiles } from '../../../../actions/file-io-action'
+import { getSelectedUser } from '../../../../selectors'
 
 
 class Dropzone extends Component {
@@ -22,7 +23,7 @@ class Dropzone extends Component {
         event.stopPropagation();
         event.preventDefault();
         const files = event.dataTransfer.files;
-        this.props.addFiles(files);
+        this.props.addFiles(files, this.props.selectedUser);
     }
 
     render() {
@@ -37,6 +38,7 @@ class Dropzone extends Component {
 
 function mapStateToProps(state) {
     return {
+        selectedUser: getSelectedUser(state)
     };
 }
 

@@ -1,5 +1,8 @@
 import { mirrorAccepted, getMirrorStatus,
-     getUrl, getUsers, getSelectedUser, getSelectedBodyTab, getfileApiIsSupported, getImages } from '../../selectors'
+        getUrl, getUsers,
+        getSelectedUser, getSelectedBodyTab, 
+        getfileApiIsSupported, getImages, 
+        getImagesOfSelectedUser } from '../../selectors'
 
 
 describe('mirrorAccepted', () => {
@@ -140,6 +143,22 @@ describe('getImages', () => {
             }
         };
         expect(getImages(stateMock)).toEqual(["1", "2"]);
+    });
+
+})
+
+describe('getImagesOfSelectedUser', () => {
+
+    it('should return images which are associated with specific user', () => {
+        const stateMock = {
+            addImageReducer: {
+                images: [{owner: "foo", image: "1"},{owner: "bar", image:"2"}]
+            },
+            selectUserReducer: {
+                selectedUser: "foo"
+            }
+        };
+        expect(getImagesOfSelectedUser(stateMock)).toEqual(["1"]);
     });
 
 })

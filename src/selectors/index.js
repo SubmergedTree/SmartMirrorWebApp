@@ -17,3 +17,10 @@ export const getSelectedBodyTab = state => state.bodySelectorReducer.tab
 export const getfileApiIsSupported = state => state.fileApiIsSupportedReducer.fileApiSupported
 
 export const getImages = state => state.addImageReducer.images
+
+export const getImagesOfSelectedUser = state => {
+    const selectedUser = getSelectedUser(state);
+    const images = state.addImageReducer.images;
+    return images.filter(img => img.owner === selectedUser)
+                .map(img => img.image)
+}

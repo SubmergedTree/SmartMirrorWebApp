@@ -36,14 +36,34 @@ describe('addImageReducer', () => {
 
     it('should add an image', () => {
         expect(addImageReducer({
-            images: ["foo"]
+            images: [ {
+                image: "foo",
+                owner: "foo"
+            }]
         }, {       
             type: FILEIO.ADD_IMAGE,
-            image: "bar"
+            imageOwnerPair: {
+                image: "bar",
+                owner: "bar"
+            }
         })).toEqual(
             {
-                images: ["foo", "bar"]
+                images: [{
+                    image: "foo",
+                    owner: "foo"
+                },
+                {
+                    image: "bar",
+                    owner: "bar"
+                }]
             }
         )
     });
 });
+
+/*
+        imageOwnerPair: {
+            image: image,
+            owner: owner
+        }
+        */

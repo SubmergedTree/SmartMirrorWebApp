@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux'
-import {getImages} from '../../../../selectors'
+import {getImagesOfSelectedUser} from '../../../../selectors'
 
 class ImagePreview extends Component {
     render() {
@@ -23,7 +23,7 @@ class ImagePreview extends Component {
 
 function mapStateToProps(state) {
     return {
-        images: getImages(state)
+        images: getImagesOfSelectedUser(state)
     };
 }
 

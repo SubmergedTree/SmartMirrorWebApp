@@ -13,14 +13,17 @@ export function checkIfFileApiIsSupported() {
     };
 }
 
-function storeImage(image) {
+function storeImage(image, owner) {
     return {
         type: FILEIO.ADD_IMAGE,
-        image: image
+        imageOwnerPair: {
+            image: image,
+            owner: owner
+        }
     };
 }
 
-export function addFiles(files) {
+export function addFiles(files, owner) {
     return dispatch => {
         const readerList = [];
         for (let i = 0; i < files.length; i++) {
@@ -28,7 +31,7 @@ export function addFiles(files) {
             readerList.push(newReader);
             newReader.onload = (e) => {
                 const image = newReader.result;
-                dispatch(storeImage(image))
+                dispatch(storeImage(image, owner))
             }
             newReader.readAsDataURL(files[i]);
         }
