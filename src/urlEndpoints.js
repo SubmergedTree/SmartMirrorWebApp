@@ -1,5 +1,6 @@
 
 export const UrlEndpoints = {
     status: '/status',
-    getUsers: '/getUsers'
+    getUsers: '/getUsers',
+    addPictures: '/addPictures'
 }
