@@ -26,7 +26,7 @@ export function addImageReducer(state = INITIAL_IMAGES_STATE, action) {
         case FILEIO.ADD_IMAGE: 
             return {
                 ...state,
-                images: [...state.images, action.imageOwnerPair]
+                images: state.images.concat(action.imageOwnerPairs)
 
             }
         case FindMirrorTypes.LOGOUT:

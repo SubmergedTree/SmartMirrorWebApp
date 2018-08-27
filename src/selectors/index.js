@@ -21,6 +21,9 @@ export const getImages = state => state.addImageReducer.images
 export const getImagesOfSelectedUser = state => {
     const selectedUser = getSelectedUser(state);
     const images = state.addImageReducer.images;
-    return images.filter(img => img.owner === selectedUser)
+    const filteres =  images
+                .map(img => img.imageOwnerPair)
+                .filter(img =>  img.owner === selectedUser)
                 .map(img => img.image)
+    return filteres
 }

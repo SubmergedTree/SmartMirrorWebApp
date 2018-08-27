@@ -4,16 +4,47 @@ import {bindActionCreators} from 'redux'
 import {getImagesOfSelectedUser} from '../../../../selectors'
 
 class ImagePreview extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            renderableImages: []
+        }
+    }
+
+    readImages(images) {
+        const readerList = []
+        for (let i = 0; i < images.length; i++) {
+            let newReader = new FileReader();
+            readerList.push(newReader);
+            newReader.onload = (e) => {
+                const image = newReader.result;
+                const copyImages =  this.state.renderableImages;
+                copyImages.push(image);
+                this.setState({
+                    renderableImages: copyImages
+                })
+            }
+            newReader.readAsDataURL(images[i]);
+        }
+    }
+
+    componentWillReceiveProps(newProps) {
+        this.setState({
+            renderableImages: []
+        })
+        const images = newProps.images; 
+        this.readImages(images)
+    }
+
     render() {
-        const images = this.props.images; 
         return (
             <React.Fragment>
                 {
-                    images.map((item, key) => {
+                    this.state.renderableImages.map((item, key) => {
                         return <div key={key} className="gallery">
                             <img src={item} alt="" width="600" height="400"/>
                         </div>
-
                     })
                 }
             </React.Fragment>

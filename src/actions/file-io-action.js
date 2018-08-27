@@ -13,17 +13,27 @@ export function checkIfFileApiIsSupported() {
     };
 }
 
-function storeImage(image, owner) {
+function makeImageOwnerPair(image, owner) {
     return {
-        type: FILEIO.ADD_IMAGE,
         imageOwnerPair: {
-            image: image,
-            owner: owner
+            image,
+            owner
         }
     };
 }
 
 export function addFiles(files, owner) {
+    const pairs = []
+    for (let i = 0; i < files.length; i++) {
+        pairs.push(makeImageOwnerPair(files[i], owner))
+    }   
+    return {
+        type: FILEIO.ADD_IMAGE,
+        imageOwnerPairs: pairs
+    }
+}
+
+/*export function addFiles(files, owner) {
     return dispatch => {
         const readerList = [];
         for (let i = 0; i < files.length; i++) {
@@ -36,7 +46,7 @@ export function addFiles(files, owner) {
             newReader.readAsDataURL(files[i]);
         }
     }
-}
+}*/
 
 export function deleteImageByIndex(index) {
 

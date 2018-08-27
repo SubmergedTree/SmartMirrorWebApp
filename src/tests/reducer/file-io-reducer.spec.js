@@ -42,10 +42,10 @@ describe('addImageReducer', () => {
             }]
         }, {       
             type: FILEIO.ADD_IMAGE,
-            imageOwnerPair: {
+            imageOwnerPairs: [{
                 image: "bar",
                 owner: "bar"
-            }
+            }]
         })).toEqual(
             {
                 images: [{
