@@ -2,14 +2,15 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux'
 import { sendImagesToMirror } from '../../../../actions/update-actions'
-import {getImagesOfSelectedUser, getUrl} from '../../../../selectors'
+import {getImagesOfSelectedUser, getUrl, getSelectedUser} from '../../../../selectors'
 
 
 class SendToMirrorButton extends Component {
     render() {
         return (
          <div className="upload-btn-wrapper">
-            <button className="button" onClick={() => this.props.sendImagesToMirror(this.props.images, this.props.mirrorUrl)}>Upload to SmartMirror</button>
+            <button className="button" onClick={() => this.props.sendImagesToMirror(this.props.selectedUser, this.props.images,
+                 this.props.mirrorUrl)}>Upload to SmartMirror</button>
          </div>
         );
     }
@@ -18,7 +19,8 @@ class SendToMirrorButton extends Component {
 function mapStateToProps(state) {
     return {
         images: getImagesOfSelectedUser(state),
-        mirrorUrl: getUrl(state)
+        mirrorUrl: getUrl(state),
+        selectedUser: getSelectedUser(state)
     };
 }
 

@@ -16,27 +16,27 @@ describe('sendImagesToMirror', () => {
     it('should send images in correct format to server', () => {
         fetchMock.post('http://foo.com/addPictures', {body: {"status": "ok"}});
         const expectedActions = [
-            {type: UPDATE_ACTION_TYPES.START_SENDING},
-            {type: UPDATE_ACTION_TYPES.IMAGES_TRANSFERRED}
+            {type: UPDATE_ACTION_TYPES.START_SENDING, username: 'Bart'},
+            {type: UPDATE_ACTION_TYPES.IMAGES_TRANSFERRED, username: 'Bart'}
         ]
 
         const store = mockStore({});
-        return store.dispatch(sendImagesToMirror(['a', 'b'],'http://foo.com')).then(() => {
+        return store.dispatch(sendImagesToMirror('Bart',['a', 'b'],'http://foo.com')).then(() => {
             expect(store.getActions()).toEqual(expectedActions)
           })
 
     });
 
-    it('should return FAILED_IMAGES_TRANSFER if the status code is ot 201', () => {
+    it('should return FAILED_IMAGES_TRANSFER if the status code is not 201', () => {
         fetchMock.post('http://foo.com/addPictures', 400);
 
         const expectedActions = [
-            {type: UPDATE_ACTION_TYPES.START_SENDING},
-            {type: UPDATE_ACTION_TYPES.FAILED_IMAGES_TRANSFER},
+            {type: UPDATE_ACTION_TYPES.START_SENDING, username: 'Lisa'},
+            {type: UPDATE_ACTION_TYPES.FAILED_IMAGES_TRANSFER, username: 'Lisa'},
         ]
 
         const store = mockStore({});
-        return store.dispatch(sendImagesToMirror(['a', 'b'],'http://foo.com')).then(() => {
+        return store.dispatch(sendImagesToMirror('Lisa', ['a', 'b'],'http://foo.com')).then(() => {
             expect(store.getActions()).toEqual(expectedActions)
           })
 

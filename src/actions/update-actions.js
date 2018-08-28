@@ -7,30 +7,33 @@ export const UPDATE_ACTION_TYPES = {
     START_SENDING: 'START_SENDING'
 }
 
-function failedToSendImages(e) {
+function failedToSendImages(username) {
     return {
-        type: UPDATE_ACTION_TYPES.FAILED_IMAGES_TRANSFER
+        type: UPDATE_ACTION_TYPES.FAILED_IMAGES_TRANSFER,
+        username
     }
 }
 
-function successfulImagesTransfer(body) {
+function successfulImagesTransfer(body, username) {
     return {
-        type: UPDATE_ACTION_TYPES.IMAGES_TRANSFERRED
+        type: UPDATE_ACTION_TYPES.IMAGES_TRANSFERRED,
+        username
     }
 }
 
-function startSending() {
+function startSending(username) {
     return {
-        type: UPDATE_ACTION_TYPES.START_SENDING
+        type: UPDATE_ACTION_TYPES.START_SENDING,
+        username
     }
 }
 
-export function sendImagesToMirror(images, url) {
+export function sendImagesToMirror(username, images, url) {
     url = url + UrlEndpoints.addPictures;
 
     const formData = new FormData();
     formData.append('numberOf', images.length);
-    formData.append('username', 'foo');
+    formData.append('username', username);
     for (let imageNum = 0; imageNum < images.length; imageNum++) {
         const nameNum = (imageNum + 1).toString();
         formData.append(nameNum, images[imageNum], nameNum);
@@ -38,15 +41,15 @@ export function sendImagesToMirror(images, url) {
 
     return dispatch => {
         try {
-            dispatch(startSending())
+            dispatch(startSending(username))
             return fetch(url, {
                 method: 'POST',
                 credentials: 'same-origin',
                 body: formData
             })
             .then(res => res.json())
-            .then(res => dispatch(successfulImagesTransfer(res)))
-            .catch(ex => dispatch(failedToSendImages(ex)))
+            .then(res => dispatch(successfulImagesTransfer(res, username)))
+            .catch(ex => dispatch(failedToSendImages(username)))
         } catch(e) {
             dispatch(failedToSendImages(e)); 
         }
