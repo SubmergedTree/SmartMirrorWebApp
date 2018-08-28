@@ -6,7 +6,7 @@ export const FILEIO = {
 
 
 export function checkIfFileApiIsSupported() {
-    const apiSupportedResult = window.File && window.FileReader && window.FillList;
+    const apiSupportedResult = !!window.File && !!window.FileReader;
     return {
         type: FILEIO.FILE_IO_SUPPORTED,
         apiSupported: apiSupportedResult
@@ -31,23 +31,4 @@ export function addFiles(files, owner) {
         type: FILEIO.ADD_IMAGE,
         imageOwnerPairs: pairs
     }
-}
-
-/*export function addFiles(files, owner) {
-    return dispatch => {
-        const readerList = [];
-        for (let i = 0; i < files.length; i++) {
-            let newReader = new FileReader();
-            readerList.push(newReader);
-            newReader.onload = (e) => {
-                const image = newReader.result;
-                dispatch(storeImage(image, owner))
-            }
-            newReader.readAsDataURL(files[i]);
-        }
-    }
-}*/
-
-export function deleteImageByIndex(index) {
-
 }
