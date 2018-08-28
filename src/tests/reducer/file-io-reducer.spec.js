@@ -1,5 +1,8 @@
 import {addImageReducer, fileApiIsSupportedReducer} from '../../reducer/file-io-reducer'
 import {FILEIO} from '../../actions/file-io-action'
+import { FindMirrorTypes } from '../../actions/find-mirror-action';
+import { UPDATE_ACTION_TYPES } from '../../actions/update-actions'
+
 
 describe('fileApiIsSupportedReducer', () => {
 
@@ -59,11 +62,42 @@ describe('addImageReducer', () => {
             }
         )
     });
-});
 
-/*
-        imageOwnerPair: {
-            image: image,
-            owner: owner
-        }
-        */
+    it('should delete all images when logout', () => {
+        expect(addImageReducer({
+            images: [ {
+                image: "foo",
+                owner: "foo"
+            }]
+        }, {       
+            type: FindMirrorTypes.LOGOUT
+        })).toEqual(
+            {
+                images: []
+            }
+        )
+    });
+
+    it('should delete all images associated with an user', () => {
+        expect(addImageReducer({
+            images: [ {
+                image: "foo",
+                owner: "foo"
+            },
+            {
+                image: "bar",
+                owner: "bar"
+            }]
+        }, {       
+            type: UPDATE_ACTION_TYPES.IMAGES_TRANSFERRED,
+            username: "bar"
+        })).toEqual(
+            {
+                images: [{
+                    image: "foo",
+                    owner: "foo"
+                }]
+            }
+        )
+    });
+});

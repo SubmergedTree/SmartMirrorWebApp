@@ -1,5 +1,6 @@
 import { FILEIO } from "../actions/file-io-action";
 import { FindMirrorTypes } from "../actions/find-mirror-action";
+import { UPDATE_ACTION_TYPES } from '../actions/update-actions'
 
 
 const INITIAL_FILE_API_SUPPPORTED_STATE = {
@@ -33,6 +34,12 @@ export function addImageReducer(state = INITIAL_IMAGES_STATE, action) {
             return {
                 ...state,
                 images: []
+            }
+        case UPDATE_ACTION_TYPES.IMAGES_TRANSFERRED:
+            const filteredImages = state.images.filter(img => img.owner !== action.username);
+            return {
+                ...state,
+                images: filteredImages
             }
         default:
             return state;
