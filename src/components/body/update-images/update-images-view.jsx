@@ -4,6 +4,8 @@ import {bindActionCreators} from 'redux'
 import UploadImageButton from '../update-images/file-io/upload-image-button'
 import Dropzone from '../update-images/file-io/dropzone'
 import ImagePreview from '../update-images/file-io/image-preview'
+import SendToMirrorButton from '../update-images/file-io/send-to-mirror'
+
 
 class UpdateImageView extends Component {
     render() {
@@ -12,6 +14,7 @@ class UpdateImageView extends Component {
             <UploadImageButton/>
             <Dropzone/>
             <ImagePreview/>
+            <SendToMirrorButton/>
         </React.Fragment>       
         );
     }
