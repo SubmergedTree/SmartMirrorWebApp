@@ -1,0 +1,44 @@
+import configureMockStore from 'redux-mock-store'
+import thunk from 'redux-thunk'
+import fetchMock from 'fetch-mock'
+import {UPDATE_ACTION_TYPES, sendImagesToMirror} from "../../actions/update-actions";
+import expect from 'expect'
+
+const mockStore = configureMockStore([ thunk ]);
+
+// TODO test form data
+describe('sendImagesToMirror', () => {
+    afterEach(() => {
+        fetchMock.reset()
+        fetchMock.restore()
+      })
+
+    it('should send images in correct format to server', () => {
+        fetchMock.post('http://foo.com/addPictures', {body: {"status": "ok"}});
+        const expectedActions = [
+            {type: UPDATE_ACTION_TYPES.START_SENDING},
+            {type: UPDATE_ACTION_TYPES.IMAGES_TRANSFERRED}
+        ]
+
+        const store = mockStore({});
+        return store.dispatch(sendImagesToMirror(['a', 'b'],'http://foo.com')).then(() => {
+            expect(store.getActions()).toEqual(expectedActions)
+          })
+
+    });
+
+    it('should return FAILED_IMAGES_TRANSFER if the status code is ot 201', () => {
+        fetchMock.post('http://foo.com/addPictures', 400);
+
+        const expectedActions = [
+            {type: UPDATE_ACTION_TYPES.START_SENDING},
+            {type: UPDATE_ACTION_TYPES.FAILED_IMAGES_TRANSFER},
+        ]
+
+        const store = mockStore({});
+        return store.dispatch(sendImagesToMirror(['a', 'b'],'http://foo.com')).then(() => {
+            expect(store.getActions()).toEqual(expectedActions)
+          })
+
+    });
+});

@@ -8,14 +8,12 @@ export const UPDATE_ACTION_TYPES = {
 }
 
 function failedToSendImages(e) {
-    console.error(e);
     return {
         type: UPDATE_ACTION_TYPES.FAILED_IMAGES_TRANSFER
     }
 }
 
 function successfulImagesTransfer(body) {
-    console.log(body);
     return {
         type: UPDATE_ACTION_TYPES.IMAGES_TRANSFERRED
     }
