@@ -152,7 +152,7 @@ describe('getImagesOfSelectedUser', () => {
     it('should return images which are associated with specific user', () => {
         const stateMock = {
             addImageReducer: {
-                images: [{owner: "foo", image: "1"},{owner: "bar", image:"2"}]
+                images: [{imageOwnerPair: {owner: "foo", image: "1"}},{imageOwnerPair: {owner: "bar", image:"2"}}]
             },
             selectUserReducer: {
                 selectedUser: "foo"
