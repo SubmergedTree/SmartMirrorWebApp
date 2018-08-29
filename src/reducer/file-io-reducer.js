@@ -4,7 +4,7 @@ import { UPDATE_ACTION_TYPES } from '../actions/update-actions'
 
 
 const INITIAL_FILE_API_SUPPPORTED_STATE = {
-    fileApiSupported: false
+    fileApiSupported: null
 }
 
 const INITIAL_IMAGES_STATE = {

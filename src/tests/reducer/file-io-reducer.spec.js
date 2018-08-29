@@ -9,7 +9,7 @@ describe('fileApiIsSupportedReducer', () => {
     it('should return the initial state ', () => {
         expect(fileApiIsSupportedReducer(undefined, {})).toEqual(
             {
-                fileApiSupported: false
+                fileApiSupported: null
             }
         )
     });
