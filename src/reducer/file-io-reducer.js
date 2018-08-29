@@ -36,7 +36,7 @@ export function addImageReducer(state = INITIAL_IMAGES_STATE, action) {
                 images: []
             }
         case UPDATE_ACTION_TYPES.IMAGES_TRANSFERRED:
-            const filteredImages = state.images.filter(img => img.owner !== action.username);
+            const filteredImages = state.images.filter(img => img.imageOwnerPair.owner.username !== action.username);
             return {
                 ...state,
                 images: filteredImages

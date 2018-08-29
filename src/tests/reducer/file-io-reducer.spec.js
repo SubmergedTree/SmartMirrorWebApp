@@ -80,23 +80,23 @@ describe('addImageReducer', () => {
 
     it('should delete all images associated with an user', () => {
         expect(addImageReducer({
-            images: [ {
+            images: [ {imageOwnerPair:{
                 image: "foo",
-                owner: "foo"
-            },
-            {
+                owner:{username: "foo"}
+            }},
+            {imageOwnerPair:{
                 image: "bar",
-                owner: "bar"
-            }]
+                owner: {username: "bar"}
+            }}]
         }, {       
             type: UPDATE_ACTION_TYPES.IMAGES_TRANSFERRED,
             username: "bar"
         })).toEqual(
             {
-                images: [{
+                images: [ {imageOwnerPair:{
                     image: "foo",
-                    owner: "foo"
-                }]
+                    owner:{username: "foo"}
+                }}]
             }
         )
     });
