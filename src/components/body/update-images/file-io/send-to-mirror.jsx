@@ -9,7 +9,7 @@ class SendToMirrorButton extends Component {
     render() {
         return (
          <div className="upload-btn-wrapper">
-            <button className="button" onClick={() => this.props.sendImagesToMirror(this.props.selectedUser, this.props.images,
+            <button className="button" onClick={() => this.props.sendImagesToMirror(this.props.selectedUser.username, this.props.images,
                  this.props.mirrorUrl)}>Upload to SmartMirror</button>
          </div>
         );
