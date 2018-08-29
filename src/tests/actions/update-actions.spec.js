@@ -41,4 +41,10 @@ describe('sendImagesToMirror', () => {
           })
 
     });
+
+    it('should return NO_IMAGES if the images array is empty', () => {
+        expect(sendImagesToMirror('Marge', [], 'http://foo.com')).toEqual({
+            type: UPDATE_ACTION_TYPES.NO_IMAGES,
+          })
+    });
 });

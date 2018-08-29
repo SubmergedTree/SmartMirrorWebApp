@@ -4,7 +4,8 @@ import {UrlEndpoints} from '../urlEndpoints'
 export const UPDATE_ACTION_TYPES = {
     IMAGES_TRANSFERRED: 'IMAGES_TRANSFERRED',
     FAILED_IMAGES_TRANSFER: 'FAILED_IMAGES_TRANSFER',
-    START_SENDING: 'START_SENDING'
+    START_SENDING: 'START_SENDING',
+    NO_IMAGES: 'NO_IMAGES'
 }
 
 function failedToSendImages(username) {
@@ -30,6 +31,12 @@ function startSending(username) {
 
 export function sendImagesToMirror(username, images, url) {
     url = url + UrlEndpoints.addPictures;
+
+    if(images.length === 0) {
+        return {
+            type: UPDATE_ACTION_TYPES.NO_IMAGES
+        };
+    }
 
     const formData = new FormData();
     formData.append('numberOf', images.length);
