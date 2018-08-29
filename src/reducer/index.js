@@ -3,6 +3,7 @@ import {mirrorStatusReducer, urlReducer} from './find-mirror-reducer'
 import {usersReducer, selectUserReducer} from './user-reducer'
 import {bodySelectorReducer} from './body-selector-reducer'
 import {addImageReducer, fileApiIsSupportedReducer} from './file-io-reducer'
+import {updateImagesReducer} from './update-reducer'
 
 
 const allReducers = combineReducers({
@@ -12,7 +13,8 @@ const allReducers = combineReducers({
     selectUserReducer,
     bodySelectorReducer,
     addImageReducer,
-    fileApiIsSupportedReducer
+    fileApiIsSupportedReducer,
+    updateImagesReducer
 });
 
 
