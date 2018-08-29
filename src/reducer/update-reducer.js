@@ -1,4 +1,5 @@
 import {UPDATE_ACTION_TYPES} from '../actions/update-actions'
+import { FindMirrorTypes } from "../actions/find-mirror-action";
 
 
 const INITIAL_STATE_UPDATE = {
@@ -20,6 +21,11 @@ export function updateImagesReducer(state = INITIAL_STATE_UPDATE, action) {
             const newStateSending = {...state};
             newStateSending.sending.push(action.username);
             return newStateSending;
+        case FindMirrorTypes.LOGOUT:
+            return {
+                ...state,
+                sending: []
+            };    
         default:
             return state;
     }
