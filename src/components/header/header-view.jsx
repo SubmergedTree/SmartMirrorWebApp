@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {getMirrorStatus, getUrl} from '../../selectors' 
 import {bindActionCreators} from 'redux'
 
 import {mirrorStatus, acceptUrl, logout} from '../../actions/find-mirror-action'
+import {getUsers} from '../../actions/user-actions'
+import {getMirrorStatus, getUrl} from '../../selectors' 
 import {UrlFormView, UrlAcceptButton} from './url-form-view'
 
 class HeaderView extends Component {
@@ -63,6 +64,12 @@ class HeaderView extends Component {
             <div className="headerLabel">
             SmartMirror Web App
             </div>
+            <div className="headerRefreshButton">
+                <button onClick={e => this.props.getUsers(this.state.url)}>Refresh</button>
+            </div>
+            <div className="headerAddUser">
+                <button onClick={e => {}}>Add user</button>
+            </div>
             <div className="headerLogoutButton"> 
                 <button onClick={e => this.handleLogout(e)}>Logout</button>
             </div>
@@ -83,7 +90,8 @@ function dispatchInput(dispatch) {
     return bindActionCreators({
         mirrorStatus: mirrorStatus,
         acceptUrl: acceptUrl,
-        logout: logout
+        logout: logout,
+        getUsers
     }, dispatch);
 }
 

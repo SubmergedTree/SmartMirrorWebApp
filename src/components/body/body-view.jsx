@@ -5,7 +5,7 @@ import {getUrl, mirrorAccepted, getSelectedUser, getSelectedBodyTab} from '../..
 import SelectUserView from './sidebar/select-user-view'
 import UpdateWidgetView from './update-widgets/update-widget-view'
 import UpdateImageView from './update-images/update-images-view'
-import BodySelector from './body-selector-view'
+import BodyNavBar from './body-nav-bar'
 
 class BodyView extends Component {
     render() {
@@ -25,7 +25,7 @@ class BodyView extends Component {
                     <SelectUserView/>
                 </div>
                 <div className="body">
-                <BodySelector/>
+                <BodyNavBar/>
                 { selectedTab === 'WIDGETS' ? <UpdateWidgetView/> : <React.Fragment/> }
                 { selectedTab === 'IMAGES' ? <UpdateImageView/> : <React.Fragment/> }
                 </div>

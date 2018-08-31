@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux'
-import {getSelectedBodyTab} from '../../selectors' 
+import {getSelectedBodyTab, getSelectedUser} from '../../selectors' 
 import { selectImagesTab, selectWidgetsTab } from '../../actions/body-selector-action'
 
 
-class BodySelectorView extends Component {
+class BodyNavBar extends Component {
     constructor(props) {
         super(props)
         
@@ -14,12 +14,13 @@ class BodySelectorView extends Component {
     }
 
     render() {
-        const selectedTab = this.props.getActiveTab
+        const selectedTab = this.props.activeTab
         if (selectedTab === this.TAB_IMAGES) {
             return (
                 <ul className="bodySelector">
                     <li className="bodySelectorFloatActive"> <a>Images</a></li>
                     <li className="bodySelectorFloat" onClick={this.props.selectWidgetsTab}> <a>Widgets</a></li>
+                    <li className="deleteUser"> <a>Delete this user</a></li>
                 </ul>
             );
         } else if (selectedTab === this.TAB_WIDGETS) {
@@ -27,6 +28,7 @@ class BodySelectorView extends Component {
                 <ul className="bodySelector">
                     <li className="bodySelectorFloat" onClick={this.props.selectImagesTab}> <a>Images</a></li>
                     <li className="bodySelectorFloatActive"> <a>Widgets</a></li>
+                    <li className="deleteUser"> <a>Delete this user</a></li>
                 </ul>
             );
         } else {
@@ -34,6 +36,7 @@ class BodySelectorView extends Component {
                 <ul className="bodySelector">
                     <li className="bodySelectorFloat" onClick={this.props.selectImagesTab}> <a>Images</a></li>
                     <li className="bodySelectorFloat" onClick={this.props.selectWidgetsTab}> <a>Widgets</a></li>
+                    <li className="deleteUser"> <a>Delete this user</a></li>
                 </ul>
             );
         }
@@ -42,7 +45,8 @@ class BodySelectorView extends Component {
 
 function mapStateToProps(state) {
     return {
-        getActiveTab: getSelectedBodyTab(state),
+        activeTab: getSelectedBodyTab(state),
+        selectedUser: getSelectedUser(state)
     };
 }
 
@@ -53,4 +57,4 @@ function dispatchInput(dispatch) {
     }, dispatch);
 }
 
-export default connect(mapStateToProps, dispatchInput)(BodySelectorView);
+export default connect(mapStateToProps, dispatchInput)(BodyNavBar);
