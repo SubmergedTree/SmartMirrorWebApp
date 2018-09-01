@@ -38,6 +38,15 @@ export function selectUserReducer(state = INITIAL_STATE_SELECTED_USER, action) {
             return Object.assign({}, state, {
                 selectedUser: null
             });
+        case USERTYPES.GETUSERS_SUCCESS: 
+            let selectedUser = state.selectedUser;
+            if (!action.users.includes(selectedUser)) {
+                selectedUser = null;
+            }
+            return {
+                ...state,
+                selectedUser
+            }    
         default:
             return state;
     }

@@ -70,7 +70,8 @@ describe('selectUserReducer', () => {
             {
                 selectedUser: selectedUser
             }, {
-                type: USERTYPES.GETUSERS_SUCCESS
+                type: USERTYPES.GETUSERS_SUCCESS,
+                users: [selectedUser]
             })).toEqual(
             {
                 selectedUser: selectedUser
@@ -105,4 +106,59 @@ describe('selectUserReducer', () => {
         )
     });
 
+    describe('on refresh', () => {
+        describe('selectedUser is still in new user list', () => {
+            it('should not alter selectedUser ', () =>{
+                expect(selectUserReducer(
+                    {
+                        selectedUser: 'Bart'
+                    },
+                    {
+                        type: USERTYPES.GETUSERS_SUCCESS,
+                        users: ['Lisa', 'Bart']
+                    }
+                )).toEqual(
+                    {
+                        selectedUser: 'Bart'
+                    }
+                )
+            });
+        });
+
+        describe('selectedUser is not in new user list', () => {
+            it('should set selectedUser to null', () =>{
+                expect(selectUserReducer(
+                    {
+                        selectedUser: 'Bart'
+                    },
+                    {
+                        type: USERTYPES.GETUSERS_SUCCESS,
+                        users: ['Lisa', 'Homer']
+                    }
+                )).toEqual(
+                    {
+                        selectedUser: null
+                    }
+                )
+            });
+        });
+
+        describe('called when current selectedUser is still null', () => {
+            it('should set selectedUser to null', () =>{
+                expect(selectUserReducer(
+                    {
+                        selectedUser: null
+                    },
+                    {
+                        type: USERTYPES.GETUSERS_SUCCESS,
+                        users:  ['Lisa', 'Homer']
+                    }
+                )).toEqual(
+                    {
+                        selectedUser: null
+                    }
+                )
+            });
+        });
+    });
 });
