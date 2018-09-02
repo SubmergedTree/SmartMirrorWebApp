@@ -4,6 +4,7 @@ import {usersReducer, selectUserReducer} from './user-reducer'
 import {bodySelectorReducer} from './body-selector-reducer'
 import {addImageReducer, fileApiIsSupportedReducer} from './file-io-reducer'
 import {updateImagesReducer} from './update-reducer'
+import {errorReducer} from './error-reducer'
 
 
 const allReducers = combineReducers({
@@ -14,7 +15,8 @@ const allReducers = combineReducers({
     bodySelectorReducer,
     addImageReducer,
     fileApiIsSupportedReducer,
-    updateImagesReducer
+    updateImagesReducer,
+    errorReducer
 });
 
 

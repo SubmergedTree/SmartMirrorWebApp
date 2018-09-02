@@ -27,3 +27,6 @@ export const getImagesOfSelectedUser = state => {
                 .map(img => img.image)
     return filteres
 }
+
+
+export const getErrors = state => state.errorReducer.errors

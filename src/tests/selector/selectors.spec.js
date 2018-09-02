@@ -2,7 +2,7 @@ import { mirrorAccepted, getMirrorStatus,
         getUrl, getUsers,
         getSelectedUser, getSelectedBodyTab, 
         getfileApiIsSupported, getImages, 
-        getImagesOfSelectedUser } from '../../selectors'
+        getImagesOfSelectedUser, getErrors } from '../../selectors'
 
 
 describe('mirrorAccepted', () => {
@@ -162,3 +162,16 @@ describe('getImagesOfSelectedUser', () => {
     });
 
 })
+
+describe('getErrors', () => {
+
+    it('should return all errors ', () => {
+        const stateMock = {
+            errorReducer: {
+                errors: [{id: 1, name:"foo", desc: "bar"}]
+            }
+        };
+
+        expect(getErrors(stateMock)).toEqual([{id: 1, name:"foo", desc: "bar"}]);
+    });
+});
