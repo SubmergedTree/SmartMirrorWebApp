@@ -1,7 +1,8 @@
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import fetchMock from 'fetch-mock'
-import {getUsers, selectUser, resetSelectedUser,USERTYPES} from "../../actions/user-actions";
+import {getUsers, selectUser, resetSelectedUser,
+     deleteUser, newUser, USERTYPES} from "../../actions/user-actions";
 import expect from 'expect'
 
 const mockStore = configureMockStore([ thunk ]);
@@ -91,4 +92,100 @@ describe('resetSelectedUser', () => {
           })
     });
 
+});
+
+
+describe('deleteUser', () => {
+    afterEach(() => {
+        fetchMock.reset()
+        fetchMock.restore()
+      })
+
+    describe('user is succesfully deleted on mirror', () => {
+        it('should return USERTYPES.DELETE_USER and username', () => {
+            fetchMock.delete('http://foo.com/deleteUser', 200);
+            const expectedActions = [
+                {type: USERTYPES.DELETE_USER, username: 'Bart'}
+            ]
+            const store = mockStore({});
+            return store.dispatch(deleteUser('Bart','http://foo.com')).then(() => {
+                expect(store.getActions()).toEqual(expectedActions)
+            })
+        });
+    });
+
+    describe('user is unknown', () => {
+        it('should return USERTYPES.DELETE_USER_NOT_FOUND and username', () => {
+            fetchMock.delete('http://foo.com/deleteUser', 409);
+            const expectedActions = [
+                {type: USERTYPES.DELETE_USER_NOT_FOUND, username: 'Bart'}
+            ]
+            const store = mockStore({});
+            return store.dispatch(deleteUser('Bart','http://foo.com')).then(() => {
+                expect(store.getActions()).toEqual(expectedActions)
+            })
+        });
+    });
+
+    describe('an error occurred', () => {
+        it('should return USERTYPES.DELETE_USER_ERROR and username', () => {
+            fetchMock.delete('http://foo.com/deleteUser', 500);
+            const expectedActions = [
+                {type: USERTYPES.DELETE_USER_ERROR, username: 'Bart'}
+            ]
+            const store = mockStore({});
+            return store.dispatch(deleteUser('Bart','http://foo.com')).then(() => {
+                expect(store.getActions()).toEqual(expectedActions)
+            })
+        });
+    });
+});
+
+describe('newUser', () => {
+    afterEach(() => {
+        fetchMock.reset()
+        fetchMock.restore()
+      })
+
+    describe('user is succesfully created on mirror', () => {
+        it('should return USERTYPES.NEW_USER and username', () => {
+            fetchMock.post('http://foo.com/newUser', 200);
+            const expectedActions = [
+                {type: USERTYPES.NEW_USER, username: 'ElBarto', name: 'Simpson', prename: 'Bart'}
+            ]
+
+            const store = mockStore({});
+            return store.dispatch(newUser('ElBarto', 'Simpson', 'Bart', 'img','http://foo.com')).then(() => {
+                expect(store.getActions()).toEqual(expectedActions)
+            })
+        });
+    });
+
+    describe('user already exists', () => {
+        it('should return USERTYPES.NEW_USER_DUPLICATED and username', () => {
+            fetchMock.post('http://foo.com/newUser', 409);
+            const expectedActions = [
+                {type: USERTYPES.NEW_USER_DUPLICATED, username: 'ElBarto'}
+            ]
+
+            const store = mockStore({});
+            return store.dispatch(newUser('ElBarto', 'Simpson', 'Bart', 'img','http://foo.com')).then(() => {
+                expect(store.getActions()).toEqual(expectedActions)
+            })
+        });
+    });
+
+    describe('an error occurred', () => {
+        it('should return USERTYPES.NEW_USER_ERROR and username', () => {
+            fetchMock.post('http://foo.com/newUser', 500);
+            const expectedActions = [
+                {type: USERTYPES.NEW_USER_ERROR, username: 'ElBarto'}
+            ]
+
+            const store = mockStore({});
+            return store.dispatch(newUser('ElBarto', 'Simpson', 'Bart', 'img','http://foo.com')).then(() => {
+                expect(store.getActions()).toEqual(expectedActions)
+            })
+        });
+    });
 });
