@@ -6,7 +6,11 @@ import {Provider} from 'react-redux'
 import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
 import allReducers from './reducer'
-import './index.css';
+
+import './stylesheets/index.css';
+import './stylesheets/header.css';
+import './stylesheets/body.css';
+
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // DEV
 const store = createStore(allReducers, /* preloadedState, */ composeEnhancers(applyMiddleware(thunk))); //DEV

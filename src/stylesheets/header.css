@@ -1,0 +1,32 @@
+.header {
+    text-align: center;
+    background: #e67e22;
+    color: white;
+	padding: 80px;
+}
+
+.header input {
+	width: 50%;
+    font-size: 22px; 
+    margin: 4px 50px;
+    padding: 12px 32px;
+
+    border: 4px solid #ccc;
+    border-radius: 15px;  
+}
+
+.button.logout {
+    float: right;
+}
+
+
+@media screen and (max-width: 800px) {
+    .button.logout {
+        float: initial;
+    }
+    
+    .header {
+        padding: 40px;
+    }
+}
+

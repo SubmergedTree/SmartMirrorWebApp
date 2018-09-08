@@ -17,6 +17,25 @@ class SelectUserView extends Component {
         this.props.selectUser(clickedUser);
     }
 
+    render () {
+        const users = this.props.users;
+        return(
+            <div className="side">
+                <h1>Select User</h1>
+                <ul className="ulSidebar">
+                {
+                        users.map((item, key) => {
+                            if (this.props.selectedUser && item.username === this.props.selectedUser.username)
+                                return <li key={key} onClick={() => this.onUserClick(key)}> <a className="activeSidebar"> {item.username}</a></li>
+                            else
+                                return <li key={key} onClick={() => this.onUserClick(key)}> <a>{item.username}</a></li>    
+                        })
+                }
+                </ul>
+            </div>
+        )
+    }
+/*
     render() {
         const users = this.props.users;
 
@@ -35,7 +54,7 @@ class SelectUserView extends Component {
                 </ul>
             </div>
         );
-    }
+    }*/
 }
 
 function mapStateToProps(state) {

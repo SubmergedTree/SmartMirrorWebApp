@@ -1,0 +1,211 @@
+.bodyContainer {  
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.side {
+	flex: 30%;
+    max-width: 20em;
+    background-color: #ecf0f1;
+    padding: 20px;
+}
+
+.ulSidebar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    height: inherit;
+    overflow: auto;
+    font-family: Helvetica;
+    font-weight: normal; 
+}
+
+li a {
+    background-color: #95a5a6;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    width: 100%;
+    margin: 8px 0px;
+    cursor: pointer;
+
+    border: 4px solid #bdc3c7;
+    border-radius: 15px;
+  }
+
+.activeSidebar {
+    background-color: #27ae60;
+    color: white;
+}
+
+li a:hover:not(.activeSidebar) {
+    background-color: #555;
+    color: white;
+}
+
+
+.main {
+    flex: 70%;
+    background-color: white;
+}
+
+.mainContent {
+    padding: 20px;
+    text-align: center;
+}
+
+.navbar {
+    display: flex;
+    background-color: #333;
+}
+
+.navbar div {
+    color: white;
+    padding: 14px 20px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+
+    border: 4px solid #bdc3c7;
+    border-radius: 15px;  
+    
+    margin: 10px;
+}
+
+.navbar div:hover {
+    background-color: #bdc3c7;
+    color: black;
+}
+
+.navbarActive {
+    background-color: #27ae60;
+    color: white;  
+}
+
+.navbarFiller {
+    flex-grow: 2;
+}
+
+.navbarDeleteUser {
+    background-color: #e74c3c;
+}
+
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    margin: 20px;
+  }
+  
+
+  .upload-btn-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    cursor: pointer;
+    
+  }
+
+  .dropzone {
+    margin: 0 auto;
+    height: 40em;
+    width: 50%;
+    border: #333;
+    border-style: dashed;
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+  }
+
+
+  div.gallery img {
+    width: 100%;
+    height: auto;
+    max-height: 600px;
+    max-width:400px;
+}
+
+.responsiveGallery {
+/*    margin: 20px;
+    padding: 20px 10px;
+    float: left;
+    width: 25%;*/
+
+    margin: 20px;
+    padding: 20px 10px;
+    float: left;
+}
+
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+  .uploadButton {
+    background-color: #95a5a6;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  
+  .button.send {
+      margin: 20px;
+  }
+
+  @media only screen and (max-width: 2500) {
+    .responsiveGallery {
+     padding: 6px 6px;
+     float: left;
+     width: 25%;
+     }
+ }
+ 
+
+@media screen and (max-width: 800px) {
+    .bodyContainer {   
+        flex-direction: column;
+    }
+
+    .navbar div {
+        width: 50%;
+    }
+    
+    .side {
+      flex: 100%;
+      background-color: #f1f1f1;
+      padding: 20px;
+      max-width: initial;
+      min-width: initial;
+     }
+
+     .dropzone {
+        display: none;
+      }
+      
+      .responsiveGallery {
+        width: 50%;
+        margin: 6px 0;
+    }  
+}
+
+@media only screen and (max-width: 500px) {
+    .responsiveGallery {
+        width: 100%;
+    }
+}
+

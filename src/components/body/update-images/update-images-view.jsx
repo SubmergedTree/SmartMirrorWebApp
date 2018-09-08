@@ -23,7 +23,7 @@ class UpdateImageView extends Component {
         }
         return(
         <div>
-            <UploadImageButton/>
+            <UploadImageButton/><br/>
             <Dropzone/>
             <ImagePreview/>
             <SendToMirrorButton/>

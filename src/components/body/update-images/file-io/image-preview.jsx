@@ -40,6 +40,20 @@ class ImagePreview extends Component {
     render() {
         return (
             <React.Fragment>
+            {
+                   this.state.renderableImages.map((item, key) => {
+                    return <div class="responsiveGallery">
+                          <div class="gallery">
+                          <img src={item} alt="" width="300" height="200"/>
+                        </div>
+                    </div>
+                })
+            }
+            <div class="clearfix"></div>
+            </React.Fragment>
+        );
+        /*return (
+            <React.Fragment>
                 {
                     this.state.renderableImages.map((item, key) => {
                         return <div key={key} className="gallery">
@@ -48,7 +62,7 @@ class ImagePreview extends Component {
                     })
                 }
             </React.Fragment>
-        );
+        );*/
     }
 }
 

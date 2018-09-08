@@ -8,7 +8,42 @@ import UpdateImageView from './update-images/update-images-view'
 import BodyNavBar from './body-nav-bar'
 
 class BodyView extends Component {
+
     render() {
+        const selectedTab = this.props.getSelectedBodyTab;
+        let sidebar = <div/>;
+        let main = <div/>;
+        let navBar = <div/>;
+
+        if (this.props.mirrorAccepted && !this.props.selectedUser) {
+            return (
+                <div className="bodyContainer">
+                    <SelectUserView/>
+                </div>
+            )        
+        } else if (this.props.mirrorAccepted) {
+            return (
+                <div className="bodyContainer">
+                    <SelectUserView/>
+                    <div className="main">
+                        <BodyNavBar/>
+                        <div className="mainContent">
+                        { selectedTab === 'WIDGETS' ? <UpdateWidgetView/> : <React.Fragment/> }
+                        { selectedTab === 'IMAGES' ? <UpdateImageView/> : <React.Fragment/> }
+                        </div>
+                    </div>
+                </div>
+    
+            )
+        }
+
+        return (
+            <div/>
+        )
+    
+    }
+
+   /* render() {
         const selectedTab = this.props.getSelectedBodyTab
         if (this.props.mirrorAccepted && !this.props.selectedUser) {
             return (
@@ -35,7 +70,7 @@ class BodyView extends Component {
         return (
             <div/>
         );
-    }
+    }*/
 }
 
 function mapStateToProps(state) {

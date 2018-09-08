@@ -5,7 +5,7 @@ import {bindActionCreators} from 'redux'
 import {mirrorStatus, acceptUrl, logout} from '../../actions/find-mirror-action'
 import {getUsers} from '../../actions/user-actions'
 import {getMirrorStatus, getUrl} from '../../selectors' 
-import {UrlFormView, UrlAcceptButton} from './url-form-view'
+import {UrlFormView} from './url-form-view'
 
 class HeaderView extends Component {
     constructor(props) {
@@ -34,7 +34,27 @@ class HeaderView extends Component {
         this.props.logout()
     }
 
-    render() {
+    render () {
+        const url = this.props.url
+        let form;
+        if(url.length === 0) {
+            form = <UrlFormView 
+                    url={this.state.url} 
+                    isMirrorUp={this.props.isMirrorUp}
+                    handleSubmitUrl={this.handleSubmitUrl}
+                    handleUrlChange={this.handleUrlChange}/>   
+        } else {
+            form = <button className="button logout" onClick={e => this.handleLogout(e)}>Logout</button>
+        }
+            return (
+                <div className="header">
+                    <h1>Smart Mirror Web App</h1>
+                    {form}
+                </div>
+            )
+    }
+
+    /*render() {
         const url = this.props.url
         if (url.length === 0) {
             return (
@@ -75,7 +95,7 @@ class HeaderView extends Component {
             </div>
             </React.Fragment>
         );
-    }
+    }*/
 }
 
 

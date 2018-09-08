@@ -9,7 +9,7 @@ class UploadImageButton extends Component {
     render() {
         return (
          <div className="upload-btn-wrapper">
-            <button className="button">Upload an image</button>
+            <button className="uploadButton">Upload an image</button>
             <input type="file" accept='image/*' onChange={(event) => {this.props.addFiles(event.target.files, this.props.selectedUser)}}
               multiple/>
          </div>

@@ -10,14 +10,10 @@ export function UrlFormView(props) {
                         value={props.url} 
                         onChange={e => props.handleUrlChange(e)}
                     />
+                {props.isMirrorUp === true &&
+                    <button className="button"  onClick={e => props.handleSubmitUrl(e)}>Submit</button>
+                }
             </form>
         </div>
-    );
-}
-
-
-export function UrlAcceptButton(props) {
-    return (
-        <button onClick={e => props.handleSubmitUrl(e)}>Submit</button>
     );
 }

@@ -17,27 +17,30 @@ class BodyNavBar extends Component {
         const selectedTab = this.props.activeTab
         if (selectedTab === this.TAB_IMAGES) {
             return (
-                <ul className="bodySelector">
-                    <li className="bodySelectorFloatActive"> <a>Images</a></li>
-                    <li className="bodySelectorFloat" onClick={this.props.selectWidgetsTab}> <a>Widgets</a></li>
-                    <li className="deleteUser"> <a>Delete this user</a></li>
-                </ul>
+                <div className="navbar">
+                    <div className="navbarActive">Images</div>
+                    <div onClick={this.props.selectWidgetsTab}>Widgets</div>
+                    <span className="navbarFiller"></span>
+                    <div className="navbarDeleteUser">Delete this user</div>
+                </div>
             );
         } else if (selectedTab === this.TAB_WIDGETS) {
             return (
-                <ul className="bodySelector">
-                    <li className="bodySelectorFloat" onClick={this.props.selectImagesTab}> <a>Images</a></li>
-                    <li className="bodySelectorFloatActive"> <a>Widgets</a></li>
-                    <li className="deleteUser"> <a>Delete this user</a></li>
-                </ul>
+                <div className="navbar">
+                    <div className="bodySelectorFloat" onClick={this.props.selectImagesTab}>Images</div>
+                    <div className="navbarActive"> Widgets</div>
+                    <span className="navbarFiller"></span>
+                    <div className="navbarDeleteUser"> Delete this user</div>
+                </div>
             );
         } else {
             return (
-                <ul className="bodySelector">
-                    <li className="bodySelectorFloat" onClick={this.props.selectImagesTab}> <a>Images</a></li>
-                    <li className="bodySelectorFloat" onClick={this.props.selectWidgetsTab}> <a>Widgets</a></li>
-                    <li className="deleteUser"> <a>Delete this user</a></li>
-                </ul>
+                <div className="navbar">
+                    <div onClick={this.props.selectImagesTab}>Images</div>
+                    <div onClick={this.props.selectWidgetsTab}>Widgets</div>
+                    <span className="navbarFiller"></span>
+                    <div className="navbarDeleteUser"> Delete this user</div>
+                </div>
             );
         }
     }
