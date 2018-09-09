@@ -10,7 +10,7 @@ import allReducers from './reducer'
 import './stylesheets/index.css';
 import './stylesheets/header.css';
 import './stylesheets/body.css';
-
+import './stylesheets/error.css';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // DEV
 const store = createStore(allReducers, /* preloadedState, */ composeEnhancers(applyMiddleware(thunk))); //DEV
