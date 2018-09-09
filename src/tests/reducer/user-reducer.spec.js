@@ -111,15 +111,16 @@ describe('selectUserReducer', () => {
             it('should not alter selectedUser ', () =>{
                 expect(selectUserReducer(
                     {
-                        selectedUser: 'Bart'
+                        selectedUser: { username: 'jsmith', name: 'Smith', prename: 'John' }
                     },
                     {
                         type: USERTYPES.GETUSERS_SUCCESS,
-                        users: ['Lisa', 'Bart']
+                        users: [{ username: 'jsmith', name: 'Smith', prename: 'John' },
+                                { username: 'jsmith', name: 'Smith', prename: 'John' }]
                     }
                 )).toEqual(
                     {
-                        selectedUser: 'Bart'
+                        selectedUser: { username: 'jsmith', name: 'Smith', prename: 'John' }
                     }
                 )
             });
@@ -129,12 +130,12 @@ describe('selectUserReducer', () => {
             it('should set selectedUser to null', () =>{
                 expect(selectUserReducer(
                     {
-                        selectedUser: 'Bart'
+                        selectedUser: { username: 'ElBarto', name: 'Simpson', prename: 'Bart' }
                     },
                     {
                         type: USERTYPES.GETUSERS_SUCCESS,
-                        users: ['Lisa', 'Homer']
-                    }
+                        users: [{ username: 'jsmith', name: 'Smith', prename: 'John' },
+                                { username: 'jsmith', name: 'Smith', prename: 'John' }]                    }
                 )).toEqual(
                     {
                         selectedUser: null
@@ -151,8 +152,8 @@ describe('selectUserReducer', () => {
                     },
                     {
                         type: USERTYPES.GETUSERS_SUCCESS,
-                        users:  ['Lisa', 'Homer']
-                    }
+                        users: [{ username: 'jsmith', name: 'Smith', prename: 'John' },
+                                { username: 'jsmith', name: 'Smith', prename: 'John' }]                    }
                 )).toEqual(
                     {
                         selectedUser: null

@@ -40,7 +40,7 @@ export function selectUserReducer(state = INITIAL_STATE_SELECTED_USER, action) {
             });
         case USERTYPES.GETUSERS_SUCCESS: 
             let selectedUser = state.selectedUser;
-            if (!action.users.includes(selectedUser)) {
+            if (selectedUser !== null && !action.users.map(user => user.username).includes(selectedUser.username)) {
                 selectedUser = null;
             }
             return {
