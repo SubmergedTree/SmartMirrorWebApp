@@ -44,7 +44,10 @@ class HeaderView extends Component {
                     handleSubmitUrl={this.handleSubmitUrl}
                     handleUrlChange={this.handleUrlChange}/>   
         } else {
-            form = <button className="button logout" onClick={e => this.handleLogout(e)}>Logout</button>
+            form =  <div>
+                        <button className="button rightFloat" onClick={e => this.handleLogout(e)}>Logout</button>
+                        <button className="button rightFloat" onClick={e => this.props.getUsers(this.state.url)}>Refresh</button>
+                    </div>
         }
             return (
                 <div className="header">
