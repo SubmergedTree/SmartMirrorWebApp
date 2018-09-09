@@ -8,10 +8,10 @@ const INITIAL_STATE_UPDATE = {
 
 export function updateImagesReducer(state = INITIAL_STATE_UPDATE, action) {
     switch(action.type) {
-        case UPDATE_ACTION_TYPES.FAILED_IMAGES_TRANSFER:
+  /*      case UPDATE_ACTION_TYPES.FAILED_IMAGES_TRANSFER:
             return {
                 ...state
-            }
+            }*/
         case UPDATE_ACTION_TYPES.IMAGES_TRANSFERRED:
             return {
                 ...state,

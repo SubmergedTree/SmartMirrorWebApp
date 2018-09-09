@@ -1,7 +1,9 @@
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import fetchMock from 'fetch-mock'
-import {UPDATE_ACTION_TYPES, sendImagesToMirror} from "../../actions/update-actions";
+import {UPDATE_ACTION_TYPES, sendImagesToMirror, ERROR_TYPES} from "../../actions/update-actions";
+import {ERROR, resolveAllErrors} from "../../actions/error-action";
+
 import expect from 'expect'
 
 const mockStore = configureMockStore([ thunk ]);
@@ -9,8 +11,9 @@ const mockStore = configureMockStore([ thunk ]);
 // TODO test form data
 describe('sendImagesToMirror', () => {
     afterEach(() => {
-        fetchMock.reset()
-        fetchMock.restore()
+        fetchMock.reset();
+        fetchMock.restore();
+        resolveAllErrors();
       })
 
     it('should send images in correct format to server', () => {
@@ -27,12 +30,12 @@ describe('sendImagesToMirror', () => {
 
     });
 
-    it('should return FAILED_IMAGES_TRANSFER if the status code is not 201', () => {
+    it('should return newError if the status code is not 201', () => {
         fetchMock.post('http://foo.com/addPictures', 400);
 
         const expectedActions = [
             {type: UPDATE_ACTION_TYPES.START_SENDING, username: 'Lisa'},
-            {type: UPDATE_ACTION_TYPES.FAILED_IMAGES_TRANSFER, username: 'Lisa'},
+            {type: ERROR.NEW_ERROR, id: 0, name: ERROR_TYPES.FAILED_IMAGES_TRANSFER, desc: 'Lisa'},
         ]
 
         const store = mockStore({});
@@ -44,7 +47,10 @@ describe('sendImagesToMirror', () => {
 
     it('should return NO_IMAGES if the images array is empty', () => {
         expect(sendImagesToMirror('Marge', [], 'http://foo.com')).toEqual({
-            type: UPDATE_ACTION_TYPES.NO_IMAGES,
+            type: ERROR.NEW_ERROR,
+            id: 0,
+            name: ERROR_TYPES.NO_IMAGES,
+            desc: 'Marge'
           })
     });
 });
