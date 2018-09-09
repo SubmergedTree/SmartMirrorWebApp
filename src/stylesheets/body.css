@@ -49,6 +49,10 @@ li a:hover:not(.activeSidebar) {
     color: white;
 }
 
+.addUser {
+    text-align: center;
+}
+
 
 .main {
     flex: 70%;

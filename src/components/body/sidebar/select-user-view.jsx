@@ -32,29 +32,12 @@ class SelectUserView extends Component {
                         })
                 }
                 </ul>
+                <div className="addUser">
+                <button className="button" onClick={e => {}}>Add User</button>
+                </div>
             </div>
         )
     }
-/*
-    render() {
-        const users = this.props.users;
-
-        return(
-            <div className="centerizedHeading">
-                Select User
-               <ul className="ulSidebar">
-                    {
-                        users.map((item, key) => {
-                            if (this.props.selectedUser && item.username === this.props.selectedUser.username)
-                                return <li key={key} onClick={() => this.onUserClick(key)}className="activeSidebar"> <a>{item.username}</a></li>
-                            else
-                                return <li key={key} onClick={() => this.onUserClick(key)}> <a>{item.username}</a></li>    
-                        })
-                    }
-                </ul>
-            </div>
-        );
-    }*/
 }
 
 function mapStateToProps(state) {
