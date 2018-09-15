@@ -15,7 +15,7 @@ class ErrorContainer extends Component {
             <React.Fragment>
             {
                 errors.map((error, key) => {
-                    return <Error error={error}/>
+                    return <Error key={key} error={error}/>
                 })
             }
             </React.Fragment>

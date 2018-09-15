@@ -1,19 +1,23 @@
 import 'isomorphic-fetch';
 import {UrlEndpoints} from '../urlEndpoints'
+import {newError} from './error-action'
 
 
 export const USERTYPES = {
     GETUSERS_SUCCESS: 'GETUSERS_SUCCESS',
-    GETUSERS_ERROR: 'GETUSERS_ERROR',
     GETUSERS_REQUEST: 'GETUSERS_REQUEST',
     SELECT_USER: 'SELECT_USER',
     DELETE_USER: 'DELETE_USER',
+    NEW_USER: 'NEW_USER',
+};
+
+export const ERROR_TYPES = {
+    GETUSERS_ERROR: 'GETUSERS_ERROR',
     DELETE_USER_ERROR: 'DELETE_USER_ERROR',
     DELETE_USER_NOT_FOUND: 'DELETE_USER_NOT_FOUND',
-    NEW_USER: 'NEW_USER',
     NEW_USER_ERROR: 'NEW_USER_ERROR',
     NEW_USER_DUPLICATED: 'NEW_USER_DUPLICATED'
-};
+}
 
 
 function getUsersStatusRequest(url) {
@@ -29,13 +33,6 @@ function getUsersStatusSuccess(body) {
       };
 }
 
-function getUsersStatusFailure(ex) {
-    return {
-        type: USERTYPES.GETUSERS_ERROR,
-        exception: ex
-      }
-}
-
 export const getUsers = (url) => {
     url = url + UrlEndpoints.getUsers;
     return dispatch => {
@@ -44,9 +41,9 @@ export const getUsers = (url) => {
             return fetch(url)
             .then(res => res.json())
             .then(body => dispatch(getUsersStatusSuccess(body)))
-            .catch(ex => dispatch(getUsersStatusFailure(ex)))
+            .catch(ex => dispatch(newError(ERROR_TYPES.GETUSERS_ERROR, ex)))
         } catch(e) {
-            dispatch(getUsersStatusFailure(e)); 
+            dispatch(newError(ERROR_TYPES.GETUSERS_ERROR, e)); 
         }
       }
 };
@@ -73,23 +70,26 @@ function successfulDeleteUser(statusCode, username) {
             username
         }
     } else if (statusCode === 409) {
-        return {    
+        return newError(ERROR_TYPES.DELETE_USER_NOT_FOUND, username);
+       /* return {    
             type: USERTYPES.DELETE_USER_NOT_FOUND,
             username
-        }
+        }*/
     } else {
-        return {    
-            type: USERTYPES.DELETE_USER_ERROR,
-            username
-        }
+        return newError(ERROR_TYPES.DELETE_USER_ERROR, username);
+        //return {    
+        //    type: USERTYPES.DELETE_USER_ERROR,
+        //    username
+       // }
     }
 }
 
 function failedDeleteUser(ex, username) {
-    return {
+    return newError(ERROR_TYPES.DELETE_USER_ERROR, username);
+   /* return {
         type: USERTYPES.DELETE_USER_ERROR,
         username
-    }
+    }*/
 }
 
 export const deleteUser = (username, url) => {
@@ -122,23 +122,26 @@ function successfulNewUser(statusCode, username, name, prename) {
             prename
         }
     } else if (statusCode === 409) {
-        return {    
+        return newError(ERROR_TYPES.NEW_USER_DUPLICATED, username);
+       /* return {    
             type: USERTYPES.NEW_USER_DUPLICATED,
             username
-        }
+        }*/
     } else {
-        return {    
+        return newError(ERROR_TYPES.NEW_USER_ERROR, username);
+      /*  return {    
             type: USERTYPES.NEW_USER_ERROR,
             username
-        }
+        }*/
     }
 }
 
 function failedNewUser(ex, username) {
-    return {
+    return newError(ERROR_TYPES.NEW_USER_ERROR, username);
+  /*  return {
         type: USERTYPES.NEW_USER_ERROR,
         username
-    }
+    }*/
 } 
 
 export const newUser = (username, name, prename, image, url) => {

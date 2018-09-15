@@ -52,7 +52,7 @@ describe('getUsers', () => {
 
         const expectedActions= [
           {type: USERTYPES.GETUSERS_REQUEST},
-          {type: USERTYPES.GETUSERS_ERROR, exception: 'No Server found'}
+          {"desc": "No Server found", "id": 0, "name": "GETUSERS_ERROR", "type": "NEW_ERROR"}
         ]
     
         const store = mockStore({status: ''});
@@ -118,7 +118,7 @@ describe('deleteUser', () => {
         it('should return USERTYPES.DELETE_USER_NOT_FOUND and username', () => {
             fetchMock.delete('http://foo.com/deleteUser', 409);
             const expectedActions = [
-                {type: USERTYPES.DELETE_USER_NOT_FOUND, username: 'Bart'}
+                {"desc": "Bart", "id": 1, "name": "DELETE_USER_NOT_FOUND", "type": "NEW_ERROR"}
             ]
             const store = mockStore({});
             return store.dispatch(deleteUser('Bart','http://foo.com')).then(() => {
@@ -131,7 +131,7 @@ describe('deleteUser', () => {
         it('should return USERTYPES.DELETE_USER_ERROR and username', () => {
             fetchMock.delete('http://foo.com/deleteUser', 500);
             const expectedActions = [
-                {type: USERTYPES.DELETE_USER_ERROR, username: 'Bart'}
+                {"desc": "Bart", "id": 2, "name": "DELETE_USER_ERROR", "type": "NEW_ERROR"}
             ]
             const store = mockStore({});
             return store.dispatch(deleteUser('Bart','http://foo.com')).then(() => {
@@ -165,7 +165,7 @@ describe('newUser', () => {
         it('should return USERTYPES.NEW_USER_DUPLICATED and username', () => {
             fetchMock.post('http://foo.com/newUser', 409);
             const expectedActions = [
-                {type: USERTYPES.NEW_USER_DUPLICATED, username: 'ElBarto'}
+                {"desc": "ElBarto", "id": 3, "name": "NEW_USER_DUPLICATED", "type": "NEW_ERROR"}
             ]
 
             const store = mockStore({});
@@ -179,7 +179,7 @@ describe('newUser', () => {
         it('should return USERTYPES.NEW_USER_ERROR and username', () => {
             fetchMock.post('http://foo.com/newUser', 500);
             const expectedActions = [
-                {type: USERTYPES.NEW_USER_ERROR, username: 'ElBarto'}
+                {"desc": "ElBarto", "id": 4, "name": "NEW_USER_ERROR", "type": "NEW_ERROR"}
             ]
 
             const store = mockStore({});
