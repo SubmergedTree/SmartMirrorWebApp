@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux'
-import {getSelectedBodyTab, getSelectedUser} from '../../selectors' 
+import {getSelectedBodyTab, getSelectedUser, getUrl} from '../../selectors' 
 import { selectImagesTab, selectWidgetsTab } from '../../actions/body-selector-action'
+import { deleteUser } from '../../actions/user-actions'
 
 
 class BodyNavBar extends Component {
@@ -21,7 +22,7 @@ class BodyNavBar extends Component {
                     <div className="navbarActive">Images</div>
                     <div onClick={this.props.selectWidgetsTab}>Widgets</div>
                     <span className="navbarFiller"></span>
-                    <div className="navbarDeleteUser">Delete this user</div>
+                    <div onClick={() => this.props.deleteUser(this.props.selectedUser.username, this.props.url)} className="navbarDeleteUser"> Delete this user</div>
                 </div>
             );
         } else if (selectedTab === this.TAB_WIDGETS) {
@@ -30,7 +31,7 @@ class BodyNavBar extends Component {
                     <div className="bodySelectorFloat" onClick={this.props.selectImagesTab}>Images</div>
                     <div className="navbarActive"> Widgets</div>
                     <span className="navbarFiller"></span>
-                    <div className="navbarDeleteUser"> Delete this user</div>
+                    <div onClick={() => this.props.deleteUser(this.props.selectedUser.username, this.props.url)} className="navbarDeleteUser"> Delete this user</div>
                 </div>
             );
         } else {
@@ -39,7 +40,7 @@ class BodyNavBar extends Component {
                     <div onClick={this.props.selectImagesTab}>Images</div>
                     <div onClick={this.props.selectWidgetsTab}>Widgets</div>
                     <span className="navbarFiller"></span>
-                    <div className="navbarDeleteUser"> Delete this user</div>
+                    <div onClick={() => this.props.deleteUser(this.props.selectedUser.username, this.props.url)} className="navbarDeleteUser"> Delete this user</div>
                 </div>
             );
         }
@@ -49,14 +50,16 @@ class BodyNavBar extends Component {
 function mapStateToProps(state) {
     return {
         activeTab: getSelectedBodyTab(state),
-        selectedUser: getSelectedUser(state)
+        selectedUser: getSelectedUser(state),
+        url: getUrl(state)
     };
 }
 
 function dispatchInput(dispatch) {
     return bindActionCreators({
         selectImagesTab: selectImagesTab,
-        selectWidgetsTab: selectWidgetsTab
+        selectWidgetsTab: selectWidgetsTab,
+        deleteUser: deleteUser
     }, dispatch);
 }
 

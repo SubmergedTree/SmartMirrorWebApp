@@ -15,6 +15,11 @@ export function usersReducer(state = INITIAL_STATE_USERS, action) {
             return Object.assign({}, state, {
                 users: []
             });*/
+        case USERTYPES.DELETE_USER:
+            return {
+                ...state,
+                users: state.users.filter(user => user.username != action.username) 
+            }    
         case USERTYPES.GETUSERS_SUCCESS:
             return Object.assign({}, state, {
                 users: action.users
@@ -47,6 +52,11 @@ export function selectUserReducer(state = INITIAL_STATE_SELECTED_USER, action) {
                 ...state,
                 selectedUser
             }    
+        case USERTYPES.DELETE_USER:
+            return {
+                ...state,
+                selectedUser: null
+            }
         default:
             return state;
     }

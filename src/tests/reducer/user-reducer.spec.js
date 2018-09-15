@@ -45,6 +45,19 @@ describe('usersReducer', () => {
         )
 
     });
+
+    it('should delete user from state', () => {
+        expect(usersReducer({users: [{username: "lisa"}, {username: "bart"}]}, {
+            type: USERTYPES.DELETE_USER,
+            username: "bart"
+        })).toEqual (
+            {
+                users: [{username: "lisa"}]
+            }
+        )
+
+    });
+
 });
 
 
@@ -160,6 +173,25 @@ describe('selectUserReducer', () => {
                     }
                 )
             });
+        });
+    });
+
+
+    describe("user is deleted", () =>{
+        it('should set selected user to null', () => {
+            expect(selectUserReducer(
+                {
+                    selectedUser: { username: 'ElBarto', name: 'Simpson', prename: 'Bart' }
+                },
+                {
+                    type: USERTYPES.DELETE_USER,
+                    username: "ElBarto"              
+                }
+            )).toEqual(
+                {
+                    selectedUser: null
+                }
+            )
         });
     });
 });
