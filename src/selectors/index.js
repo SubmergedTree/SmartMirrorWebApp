@@ -28,5 +28,4 @@ export const getImagesOfSelectedUser = state => {
     return filteres
 }
 
-
 export const getErrors = state => state.errorReducer.errors
