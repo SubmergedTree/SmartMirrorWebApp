@@ -114,7 +114,7 @@ export const deleteUser = (username, url) => {
 
 
 function successfulNewUser(statusCode, username, name, prename) {
-    if (statusCode === 200) {
+    if (statusCode === 200 || statusCode === 201) {
         return {    
             type: USERTYPES.NEW_USER,
             username,
