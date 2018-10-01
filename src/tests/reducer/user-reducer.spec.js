@@ -55,7 +55,30 @@ describe('usersReducer', () => {
                 users: [{username: "lisa"}]
             }
         )
+    });
 
+    it('should add new user to state', () => {
+        expect(usersReducer({users: [{username: "lisa", prename: "Lisa", name: "Simpson"}]}, {
+            type: USERTYPES.NEW_USER,
+            name: "Bart",
+            prename: "Simpson",
+            username: "ElBarto"
+        })).toEqual (
+            {
+                users: [
+                    {
+                        name: "Simpson",
+                        username: "lisa",
+                        prename: "Lisa"
+                    },
+                    {
+                        name: "Bart",
+                        username: "ElBarto",
+                        prename: "Simpson"
+                    }
+                ]
+            }
+        )
     });
 
 });

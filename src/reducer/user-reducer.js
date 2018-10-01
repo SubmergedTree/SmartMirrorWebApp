@@ -24,6 +24,11 @@ export function usersReducer(state = INITIAL_STATE_USERS, action) {
             return Object.assign({}, state, {
                 users: action.users
             });
+        case USERTYPES.NEW_USER:
+            return {
+                ...state,
+                users: [...state.users, {name: action.name, prename: action.prename, username: action.username}]
+            }    
         case FindMirrorTypes.LOGOUT:
             return Object.assign({}, state, {
                 users: []
