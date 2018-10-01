@@ -1,4 +1,4 @@
-import {BodySelectorTypes} from "../actions/body-selector-action";
+import {BodySelectorTypes, ShowAddUserTypes} from "../actions/body-selector-action";
 import { FindMirrorTypes } from "../actions/find-mirror-action";
 
 const Tabs = {
@@ -6,8 +6,17 @@ const Tabs = {
     IMAGES: 'IMAGES'
 }
 
+const AddUserView  = {
+    DISCARD: 'DISCARD',
+    SHOW: 'SHOW'
+}
+
 const INITIAL_BODY_SELECTOR_STATE = {
-    tab: Tabs.WIDGETS
+    tab: Tabs.WIDGETS,
+}
+
+const INITIAL_ADD_USER_VIEW_STATE = {
+    addUserView: AddUserView.DISCARD
 }
 
 
@@ -27,6 +36,22 @@ export function bodySelectorReducer(state = INITIAL_BODY_SELECTOR_STATE, action)
             });
         default:
             return state;
+    }
+}
 
+export function addUserViewReducer(state = INITIAL_ADD_USER_VIEW_STATE, action) {
+    switch(action.type) {
+        case ShowAddUserTypes.SHOW_ADD_USER:
+            return {
+                ...state,
+                addUserView: AddUserView.SHOW
+            }
+        case ShowAddUserTypes.DISCARD_ADD_USER: 
+            return {
+                ...state,
+                addUserView: AddUserView.DISCARD
+            }  
+        default: 
+            return state      
     }
 }

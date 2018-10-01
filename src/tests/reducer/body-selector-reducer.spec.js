@@ -1,5 +1,5 @@
-import { bodySelectorReducer } from '../../reducer/body-selector-reducer'
-import { BodySelectorTypes } from '../../actions/body-selector-action'
+import { bodySelectorReducer, addUserViewReducer } from '../../reducer/body-selector-reducer'
+import { BodySelectorTypes, ShowAddUserTypes } from '../../actions/body-selector-action'
 import { FindMirrorTypes } from "../../actions/find-mirror-action";
 
 describe('body-selector-reducer', () => {
@@ -47,6 +47,63 @@ describe('body-selector-reducer', () => {
         })).toEqual (
             {
                 tab: 'WIDGETS'
+            }
+        )
+    });
+
+    it('should set tab to WIDGETS when logging out', () => {
+        expect(bodySelectorReducer(
+            {
+                tab: 'IMAGES'
+            }, {
+            type: FindMirrorTypes.LOGOUT
+        })).toEqual (
+            {
+                tab: 'WIDGETS'
+            }
+        )
+    });
+
+    it('should set tab to WIDGETS when logging out', () => {
+        expect(bodySelectorReducer(
+            {
+                tab: 'IMAGES'
+            }, {
+            type: FindMirrorTypes.LOGOUT
+        })).toEqual (
+            {
+                tab: 'WIDGETS'
+            }
+        )
+    });
+});
+
+describe('addUserViewReducer', () =>{
+    it('should return default state', () => {
+        expect(addUserViewReducer(undefined, {})).toEqual (
+            {
+                addUserView: 'DISCARD'
+            }
+        )
+    });
+
+    it('should set addUserView to VIEW', () => {
+        expect(addUserViewReducer({addUserView: 'DISCARD'}, {
+            type: ShowAddUserTypes.SHOW_ADD_USER
+        })).toEqual (
+            {
+                addUserView: 'SHOW'
+            }
+        )
+    });
+
+
+    it('should set addUserView to DISCARD', () => {
+        expect(addUserViewReducer({addUserView: 'SHOW'}, {
+            type: ShowAddUserTypes.DISCARD_ADD_USER
+        })).toEqual (
+            {
+                addUserView: 'DISCARD'
             }
         )
     });
