@@ -18,7 +18,7 @@ export function usersReducer(state = INITIAL_STATE_USERS, action) {
         case USERTYPES.DELETE_USER:
             return {
                 ...state,
-                users: state.users.filter(user => user.username != action.username) 
+                users: state.users.filter(user => user.username !== action.username) 
             }    
         case USERTYPES.GETUSERS_SUCCESS:
             return Object.assign({}, state, {
